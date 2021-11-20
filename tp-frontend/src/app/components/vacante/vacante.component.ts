@@ -19,8 +19,7 @@ export class VacanteComponent implements OnInit {
 
     this.vacanteService.getVacantesEmpresa().subscribe(
       res => {
-        this.datosEmpresa = res
-        console.log(res);
+        this.datosEmpresa = res;
       }
     );
 
