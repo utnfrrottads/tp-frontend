@@ -1,37 +1,46 @@
-<mat-card class="example-card" *ngFor="let empresa of vacantesEmpresa">
-<mat-card class="example-card" *ngFor="let vacante of empresa.vacantes">
-    <mat-card-title>
-        {{ vacante.id_vacante }} - {{ vacante.cargo }}
-    </mat-card-title>
-    <mat-card-subtitle>
-        {{ empresa.id_empresa }} - {{ empresa.razon_social }}
-    </mat-card-subtitle>
-    <mat-card-content>
-      <p>
-        {{ vacante.descripcion }}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <div class="example-button-row">
-        <div class="example-flex-container">
-            <div class="example-button-container">
-            <button mat-mini-fab color="primary" aria-label="Icon button with a visibility icon">
-                <mat-icon>
-                    visibility
-                </mat-icon>
-            </button>
-            <button mat-mini-fab color="accent" aria-label="Icon button with a edit icon">
-                <mat-icon>
-                    edit
-                </mat-icon>
-            </button>
-            <button mat-mini-fab color="warn" aria-label="Icon button with a delete icon">
-                <mat-icon>
-                    delete
-                </mat-icon>
-            </button>
-            </div>
-        </div>
-        </div>
-    </mat-card-actions>
-</mat-card>
+<div class="card-container">
+
+    <ng-container *ngFor="let empresa of datosEmpresa; let i = index">
+
+        <mat-card class="example-card" *ngFor="let vacante of empresa.vacantes; let j = index">
+    
+            <mat-card-title>
+                Puesto: {{ vacante.cargo }}
+            </mat-card-title>
+            <mat-card-subtitle>
+                Empresa: {{ empresa.razon_social }}
+            </mat-card-subtitle>
+            <mat-card-content>
+                <p>
+                    {{ vacante.descripcion }}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="example-button-row">
+                    <div class="example-flex-container">
+                        <div class="example-button-container">
+                            <button mat-mini-fab color="primary" aria-label="Icon button with a visibility icon">
+                                <mat-icon>
+                                    visibility
+                                </mat-icon>
+                            </button>
+                            <button mat-mini-fab color="accent" aria-label="Icon button with a edit icon">
+                                <mat-icon>
+                                    edit
+                                </mat-icon>
+                            </button>
+                            <button mat-mini-fab color="warn" aria-label="Icon button with a delete icon">
+                                <mat-icon>
+                                    delete
+                                </mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-actions>
+
+        </mat-card>
+
+    </ng-container>
+
+</div>
