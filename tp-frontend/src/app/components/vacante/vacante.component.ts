@@ -1,3 +1,4 @@
+import { VacanteModel } from './../../models/vacante-model';
 import { EmpresaModel } from '../../models/empresa-model';
 import { Component, OnInit } from '@angular/core';
 import { VacanteService } from './../../services/vacante.service';
@@ -10,8 +11,7 @@ import { VacanteService } from './../../services/vacante.service';
 })
 export class VacanteComponent implements OnInit {
 
-  vacantesEmpresa: EmpresaModel[] = [];
-  loaded: boolean = false;
+  datosEmpresa: EmpresaModel[] = [];
 
   constructor( private vacanteService: VacanteService ) { }
 
@@ -19,8 +19,7 @@ export class VacanteComponent implements OnInit {
 
     this.vacanteService.getVacantesEmpresa().subscribe(
       res => {
-        this.vacantesEmpresa = res
-        this.loaded = true;
+        this.datosEmpresa = res;
       }
     );
 

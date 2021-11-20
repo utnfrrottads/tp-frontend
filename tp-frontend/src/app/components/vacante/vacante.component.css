@@ -1,0 +1,21 @@
+.card-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: space-around;
+}
+
+.example-card {
+    display: flex;
+    flex-direction: column;
+    background-color: wheat;
+    max-width: 300px;
+    margin: 5px;
+}
+
+mat-card-actions {
+    margin: 0;
+}
+
+mat-card-title {
+    line-height: 1.2;
+}
