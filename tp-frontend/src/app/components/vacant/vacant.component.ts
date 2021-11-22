@@ -1,15 +1,14 @@
-import { VacanteModel } from './../../models/vacante-model';
 import { EmpresaModel } from '../../models/empresa-model';
 import { Component, OnInit } from '@angular/core';
-import { VacanteService } from './../../services/vacante.service';
+import { VacanteService } from '../../services/vacante.service';
 
 
 @Component({
   selector: 'app-vacante',
-  templateUrl: './vacante.component.html',
-  styleUrls: ['./vacante.component.css']
+  templateUrl: './vacant.component.html',
+  styleUrls: ['./vacant.component.css']
 })
-export class VacanteComponent implements OnInit {
+export class VacantComponent implements OnInit {
 
   datosEmpresa: EmpresaModel[] = [];
 

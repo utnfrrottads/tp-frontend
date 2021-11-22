@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
-import { VacanteComponent } from './components/vacante/vacante.component';
+import { VacantComponent } from './components/vacant/vacant.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   {
     path: 'main', component: MainComponent,
     children: [
-      { path: 'vacantes', component: VacanteComponent }
+      { path: 'vacantes', component: VacantComponent }
     ]
   }
 ];
