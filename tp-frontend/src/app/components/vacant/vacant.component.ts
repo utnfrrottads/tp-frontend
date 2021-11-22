@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class VacantComponent implements OnInit {
 
   datosEmpresa: EmpresaModel[] = [];
-  msg = "¿Estás seguro que desea eliminar la vacante?";
+  msg = "¿Está seguro que desea eliminar la vacante?";
 
   constructor( 
     private vacanteService: VacanteService,
