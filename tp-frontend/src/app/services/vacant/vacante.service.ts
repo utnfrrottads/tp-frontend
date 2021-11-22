@@ -1,4 +1,4 @@
-import { EmpresaModel } from './../models/empresa-model';
+import { EmpresaModel } from '../../models/empresa-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -13,6 +13,10 @@ export class VacanteService {
 
   getVacantesEmpresa() {
     return this.http.get<EmpresaModel[]>(`${ this.baseUrl }/vacantes`);
+  }
+
+  deleteVacant( id: number ) {
+    return this.http.delete(`${ this.baseUrl }/vacantes/${ id }`);
   }
 
 }

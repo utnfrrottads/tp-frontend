@@ -7,13 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { VacantComponent } from './components/vacant/vacant.component';
 import { MainComponent } from './components/main/main.component';
+import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     VacantComponent,
-    MainComponent
+    MainComponent,
+    DialogContentComponent
   ],
   imports: [
     BrowserModule,

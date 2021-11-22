@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>¡Atención!</h1>
+<div class="mat-typography">
+    <p>{{ msg }}</p>
+    <mat-dialog-actions align="center">
+        <button mat-button mat-dialog-close (click)="buttonPressed(false)">Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="buttonPressed(true)">Eliminar</button>
+    </mat-dialog-actions>
+</div>
