@@ -10,7 +10,8 @@ const routes: Routes = [
     children: [
       { path: 'vacantes', component: VacantComponent }
     ]
-  }
+  },
+  { path: '**', pathMatch: 'full', redirectTo: 'main' }
 ];
 
 @NgModule({
