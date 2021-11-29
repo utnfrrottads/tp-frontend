@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { VacantComponent } from './components/vacant/vacant.component';
+import { VacantComponent } from './components/vacant/vacants/vacant.component';
 import { MainComponent } from './components/main/main.component';
 import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
+import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DialogContentComponent } from './components/dialog-content/dialog-conte
     AppComponent,
     VacantComponent,
     MainComponent,
-    DialogContentComponent
+    DialogContentComponent,
+    AddVacantComponent
   ],
   imports: [
     BrowserModule,

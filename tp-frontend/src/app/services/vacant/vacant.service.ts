@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class VacanteService {
+export class VacantService {
 
   readonly baseUrl: string = 'http://localhost:8080'
 

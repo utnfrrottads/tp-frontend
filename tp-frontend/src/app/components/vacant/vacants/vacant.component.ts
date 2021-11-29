@@ -1,12 +1,12 @@
-import { AlertService } from './../../services/alert/alert.service';
+import { AlertService } from '../../../services/alert/alert.service';
 import { Component, OnInit } from '@angular/core';
-import { VacanteService } from '../../services/vacant/vacante.service';
-import { EmpresaModel } from '../../models/empresa-model';
+import { VacantService } from '../../../services/vacant/vacant.service';
+import { EmpresaModel } from '../../../models/empresa-model';
 import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-vacante',
+  selector: 'app-vacant',
   templateUrl: './vacant.component.html',
   styleUrls: ['./vacant.component.css']
 })
@@ -16,7 +16,7 @@ export class VacantComponent implements OnInit {
   msg = "¿Está seguro que desea eliminar la vacante?";
 
   constructor( 
-    private vacanteService: VacanteService,
+    private vacantService: VacantService,
     private alertService: AlertService,
     public dialog: MatDialog,
     ) { }
@@ -26,7 +26,7 @@ export class VacantComponent implements OnInit {
   }
 
   getAllVacants() {
-    this.vacanteService.getVacantesEmpresa().subscribe(
+    this.vacantService.getVacantesEmpresa().subscribe(
       res => {
         this.datosEmpresa = res;
       }
@@ -39,7 +39,7 @@ export class VacantComponent implements OnInit {
         .subscribe( result => {
 
             if ( result ) {
-              this.vacanteService.deleteVacant( id ).subscribe(
+              this.vacantService.deleteVacant( id ).subscribe(
                 res => this.getAllVacants()
               ); 
             }
