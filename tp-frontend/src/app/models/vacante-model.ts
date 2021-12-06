@@ -1,3 +1,4 @@
+import { EmpresaModel } from './empresa-model';
 import { RequerimientoModel } from "./requerimiento-model";
 
 export interface VacanteModel {
@@ -6,6 +7,8 @@ export interface VacanteModel {
     cargo: string;
     descripcion: string;
     estado: string;
-    requerimientos: RequerimientoModel[];
+    id_empresa: number;
+    empresa: EmpresaModel;
+    requirements: RequerimientoModel[];
     
 }

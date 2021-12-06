@@ -1,10 +1,8 @@
-import { VacanteModel } from "./vacante-model";
-
 export interface EmpresaModel {
 
     id_empresa: number;
-    razon_social: string;
     cuit: string;
-    vacantes: VacanteModel[];
+    razon_social: string;
+    contactos: any[];
     
 }

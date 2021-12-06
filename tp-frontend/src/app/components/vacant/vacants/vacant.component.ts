@@ -1,7 +1,7 @@
+import { VacanteModel } from './../../../models/vacante-model';
 import { AlertService } from '../../../services/alert/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { VacantService } from '../../../services/vacant/vacant.service';
-import { EmpresaModel } from '../../../models/empresa-model';
 import { MatDialog } from '@angular/material/dialog';
 
 
@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class VacantComponent implements OnInit {
 
-  datosEmpresa: EmpresaModel[] = [];
+  datosVacantes: VacanteModel[] = [];
   msg = "¿Está seguro que desea eliminar la vacante?";
 
   constructor( 
@@ -28,13 +28,12 @@ export class VacantComponent implements OnInit {
   getAllVacants() {
     this.vacantService.getVacantesEmpresa().subscribe(
       res => {
-        this.datosEmpresa = res;
+        this.datosVacantes = res;
       }
     );
   }
 
-  deleteVacant( id: number, idx: number ) {
-
+  deleteVacant( id: number ) {
     this.alertService.confirm( this.msg ).afterClosed()
         .subscribe( result => {
 
@@ -45,5 +44,5 @@ export class VacantComponent implements OnInit {
             }
         });
   }
-
+  
 }

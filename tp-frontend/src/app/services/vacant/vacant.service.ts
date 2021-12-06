@@ -1,4 +1,4 @@
-import { EmpresaModel } from '../../models/empresa-model';
+import { VacanteModel } from './../../models/vacante-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -12,11 +12,15 @@ export class VacantService {
   constructor( private http: HttpClient ) { }
 
   getVacantesEmpresa() {
-    return this.http.get<EmpresaModel[]>(`${ this.baseUrl }/vacantes`);
+    return this.http.get<VacanteModel[]>(`${ this.baseUrl }/vacantes`);
+  };
+
+  addVacant( vacant: VacanteModel ) {
+    return this.http.post(`${ this.baseUrl }/vacantes`, vacant);
   }
 
   deleteVacant( id: number ) {
     return this.http.delete(`${ this.baseUrl }/vacantes/${ id }`);
-  }
+  };
 
 }

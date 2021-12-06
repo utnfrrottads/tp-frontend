@@ -7,8 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { VacantComponent } from './components/vacant/vacants/vacant.component';
 import { MainComponent } from './components/main/main.component';
-import { DialogContentComponent } from './components/dialog-content/dialog-content.component';
+import { DialogContentComponent } from './components/shared/dialog-content/dialog-content.component';
 import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,14 +18,16 @@ import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.co
     VacantComponent,
     MainComponent,
     DialogContentComponent,
-    AddVacantComponent
+    AddVacantComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
