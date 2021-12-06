@@ -38,19 +38,17 @@ export class AddVacantComponent implements OnInit {
   };
 
   addNewVacant() {
-
     if ( this.isValid() ) {
-      this.alertService.openSnackBar('Vacante creada correctamente');
+      this.vacantService.addVacant(this.vacant).subscribe(
+        res => {
+          this.alertService.openSnackBar('Vacante creada correctamente');
+          this.router.navigate(['/main/vacantes']);
+        },
+        error => console.log(error)
+      );
     } else {
-      return this.alertService.openSnackBar('Debe completar los datos obligatorios (*)');
+       this.alertService.openSnackBar('Debe completar los datos obligatorios (*)');
     }
-
-    this.vacantService.addVacant(this.vacant).subscribe(
-      res => {
-        this.router.navigate(['/main/vacantes']);
-      },
-      error => console.log(error)
-    );
   };
 
   cancel() {
