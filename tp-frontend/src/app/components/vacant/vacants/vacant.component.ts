@@ -34,15 +34,17 @@ export class VacantComponent implements OnInit {
   }
 
   deleteVacant( id: number ) {
-    this.alertService.confirm( this.msg ).afterClosed()
-        .subscribe( result => {
-
-            if ( result ) {
-              this.vacantService.deleteVacant( id ).subscribe(
-                res => this.getAllVacants()
-              ); 
-            }
-        });
+    this.alertService.confirm( this.msg ).afterClosed().subscribe( result => {
+      if ( result ) {
+        this.vacantService.deleteVacant( id ).subscribe(
+          res => {
+            this.getAllVacants();
+            this.alertService.openSnackBar('Vacante eliminada con éxito');
+          },
+          error => console.log(error)
+        ); 
+      }
+    });
   }
   
 }
