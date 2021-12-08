@@ -26,23 +26,23 @@
     </tr>
   </table>
   
-  <p>
+  <div>
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label for="vacant_description">Descripción del cargo</mat-label>
       <textarea matInput name="vacant_description" id="vacant_description" [(ngModel)]="vacant.vacant_description" required></textarea>
     </mat-form-field>
-  </p>
+  </div>
 
   <h2>Requerimientos del cargo</h2>
   
   <div class="flex">
-    <mat-form-field class="example-ninetieth-width" appearance="outline">
+    <mat-form-field class="example-full-width" appearance="outline">
       <mat-label for="requirement">Descripción del requerimiento</mat-label>
       <input matInput autocomplete="off" name="requirement" id="requirement" [(ngModel)]="requirement.requirement_description">
     </mat-form-field>  
 
     <div class="flex-button">
-      <button class="button" mat-mini-fab matTooltip="Agregar requerimiento" (click)="addRequirement()">
+      <button class="button" type="button" mat-mini-fab matTooltip="Agregar requerimiento" (click)="addRequirement()">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -66,7 +66,7 @@
     
     <ng-container matColumnDef="Descripción del requerimiento">
       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Descripción del requerimiento </th>
-      <td mat-cell *matCellDef="let req_desc" style="text-align: center;"> {{ req_desc.requirement_description }} </td>
+      <td mat-cell *matCellDef="let requirement" style="text-align: center;"> {{ requirement.requirement_description }} </td>
     </ng-container>
     
     <ng-container matColumnDef="Acción">

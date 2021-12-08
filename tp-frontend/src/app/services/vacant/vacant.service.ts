@@ -22,5 +22,9 @@ export class VacantService {
   deleteVacant( id: number ) {
     return this.http.delete(`${ this.baseUrl }/vacantes/${ id }`);
   };
+  
+  getVacantById( id: number ) {
+    return this.http.get<VacanteModel>(`${ this.baseUrl }/vacantes/${ id }`);
+  };
 
 }

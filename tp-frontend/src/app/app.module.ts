@@ -10,6 +10,7 @@ import { MainComponent } from './components/main/main.component';
 import { DialogContentComponent } from './components/shared/dialog-content/dialog-content.component';
 import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-detail.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MainComponent,
     DialogContentComponent,
     AddVacantComponent,
+    VacantDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { AlertService } from '../../../services/alert/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { VacantService } from '../../../services/vacant/vacant.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class VacantComponent implements OnInit {
     private vacantService: VacantService,
     private alertService: AlertService,
     public dialog: MatDialog,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class VacantComponent implements OnInit {
         this.datosVacantes = res;
       }
     );
-  }
+  };
 
   deleteVacant( id: number ) {
     this.alertService.confirm( this.msg ).afterClosed().subscribe( result => {
@@ -45,6 +47,10 @@ export class VacantComponent implements OnInit {
         ); 
       }
     });
-  }
+  };
+
+  seeMore( id: number) {
+    this.router.navigate( [ 'main/vacante', id ] );
+  };
   
 }

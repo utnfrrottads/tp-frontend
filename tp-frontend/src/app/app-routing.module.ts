@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { VacantComponent } from './components/vacant/vacants/vacant.component';
 import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.component';
+import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -10,7 +11,8 @@ const routes: Routes = [
     path: 'main', component: MainComponent,
     children: [
       { path: 'vacantes', component: VacantComponent },
-      { path: 'vacantes/nueva-vacante', component: AddVacantComponent }
+      { path: 'vacantes/nueva-vacante', component: AddVacantComponent },
+      { path: 'vacante/:id', component: VacantDetailComponent }
     ]
   },
   { path: '**', pathMatch: 'full', redirectTo: 'main' }

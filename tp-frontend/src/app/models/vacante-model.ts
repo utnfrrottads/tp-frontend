@@ -9,6 +9,6 @@ export interface VacanteModel {
     estado: string;
     id_empresa: number;
     empresa: EmpresaModel;
-    requirements: RequerimientoModel[];
+    requerimientos: RequerimientoModel[];
     
 }
