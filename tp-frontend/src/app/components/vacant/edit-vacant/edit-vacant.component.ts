@@ -37,13 +37,10 @@ export class EditVacantComponent implements OnInit {
 
   loadVacant() {
     const id = this.activatedroute.snapshot.paramMap.get('id');
-
     if ( !id ) {
       return;
     };
-
     const id_vacant = parseInt(id, 10);
-
     this.vacantService.getVacantById( id_vacant ).subscribe(
       res => {
         this.selectedVacant = res;
@@ -61,7 +58,6 @@ export class EditVacantComponent implements OnInit {
 
   addNewVacant() {
     if ( this.isValid() ) {
-
       this.vacantService.editVacant(this.selectedVacant).subscribe(
         () => {
           this.alertService.openSnackBar('Vacante actualizada correctamente');

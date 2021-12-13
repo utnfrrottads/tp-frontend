@@ -1,6 +1,7 @@
 import { VacanteModel } from './../../models/vacante-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,24 @@ export class VacantService {
 
   constructor( private http: HttpClient ) { }
 
-  getVacantesEmpresa() {
+  getVacancies(): Observable<VacanteModel[]> {
     return this.http.get<VacanteModel[]>(`${ this.baseUrl }/vacantes`);
   };
-
-  addVacant( vacant: VacanteModel ) {
-    return this.http.post(`${ this.baseUrl }/vacantes`, vacant);
-  };
-
-  editVacant( vacant: VacanteModel ) {
-    return this.http.put(`${ this.baseUrl }/vacantes/${ vacant.id_vacante }`, vacant);
-  };
-
-  deleteVacant( id: number ) {
-    return this.http.delete(`${ this.baseUrl }/vacantes/${ id }`);
-  };
   
-  getVacantById( id: number ) {
+  getVacantById( id: number ): Observable<VacanteModel> {
     return this.http.get<VacanteModel>(`${ this.baseUrl }/vacantes/${ id }`);
+  };
+
+  addVacant( vacant: VacanteModel ): Observable<VacanteModel> {
+    return this.http.post<VacanteModel>(`${ this.baseUrl }/vacantes`, vacant);
+  };
+
+  editVacant( vacant: VacanteModel ): Observable<VacanteModel> {
+    return this.http.put<VacanteModel>(`${ this.baseUrl }/vacantes/${ vacant.id_vacante }`, vacant);
+  };
+
+  deleteVacant( id: number ): Observable<VacanteModel> {
+    return this.http.delete<VacanteModel>(`${ this.baseUrl }/vacantes/${ id }`);
   };
 
 }

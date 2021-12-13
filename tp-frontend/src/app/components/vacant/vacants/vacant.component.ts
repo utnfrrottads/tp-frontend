@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class VacantComponent implements OnInit {
 
-  datosVacantes: VacanteModel[] = [];
+  vacancies: VacanteModel[] = [];
   msg = "¿Está seguro que desea eliminar la vacante?";
 
   constructor( 
@@ -28,9 +28,9 @@ export class VacantComponent implements OnInit {
   }
 
   getAllVacants() {
-    this.vacantService.getVacantesEmpresa().subscribe(
+    this.vacantService.getVacancies().subscribe(
       res => {
-        this.datosVacantes = res;
+        this.vacancies = res;
       }
     );
   };
@@ -39,9 +39,9 @@ export class VacantComponent implements OnInit {
     this.alertService.confirm( this.msg ).afterClosed().subscribe( result => {
       if ( result ) {
         this.vacantService.deleteVacant( id ).subscribe(
-          res => {
-            this.getAllVacants();
+          () => {
             this.alertService.openSnackBar('Vacante eliminada con éxito');
+            this.getAllVacants();
           },
           error => console.log(error)
         ); 

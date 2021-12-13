@@ -27,7 +27,7 @@ export class AddVacantComponent implements OnInit {
     private router: Router ) { }
     
   ngOnInit(): void {
-    this.vacant.requirements = [];
+    this.vacant.requerimientos = [];
     this.getAllCompanies();
   }
   
@@ -40,7 +40,7 @@ export class AddVacantComponent implements OnInit {
   addNewVacant() {
     if ( this.isValid() ) {
       this.vacantService.addVacant(this.vacant).subscribe(
-        res => {
+        () => {
           this.alertService.openSnackBar('Vacante creada correctamente');
           this.router.navigate(['/main/vacantes']);
         },
@@ -57,19 +57,19 @@ export class AddVacantComponent implements OnInit {
 
   addRequirement() {
     if ( Object.keys(this.requirement).length ) {
-      this.vacant.requirements.push(this.requirement);
-      this.requirements = new MatTableDataSource(this.vacant.requirements);
+      this.vacant.requerimientos.push(this.requirement);
+      this.requirements = new MatTableDataSource(this.vacant.requerimientos);
       this.requirement = {};
     }
   };
 
   removeRequirement( index: number ) {
-    this.vacant.requirements.splice(index, 1);
-    this.requirements = new MatTableDataSource(this.vacant.requirements);
+    this.vacant.requerimientos.splice(index, 1);
+    this.requirements = new MatTableDataSource(this.vacant.requerimientos);
   };
 
   isValid() {
-    if ( this.vacant.work_position && this.vacant.vacant_description && this.vacant.id_company ) {
+    if ( this.vacant.cargo && this.vacant.id_empresa ) {
       return true;
     } else {
       return false;

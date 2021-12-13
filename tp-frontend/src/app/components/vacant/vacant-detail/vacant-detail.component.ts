@@ -24,13 +24,10 @@ export class VacantDetailComponent implements OnInit {
 
   loadVacantDetail() {
     const id = this.activatedroute.snapshot.paramMap.get('id');
-
     if ( !id ) {
       return;
     };
-
     const id_vacant = parseInt(id, 10);
-
     this.vacantService.getVacantById( id_vacant ).subscribe(
       res => {
         this.vacant = res;
