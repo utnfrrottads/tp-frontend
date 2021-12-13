@@ -17,7 +17,11 @@ export class VacantService {
 
   addVacant( vacant: VacanteModel ) {
     return this.http.post(`${ this.baseUrl }/vacantes`, vacant);
-  }
+  };
+
+  editVacant( vacant: VacanteModel ) {
+    return this.http.put(`${ this.baseUrl }/vacantes/${ vacant.id_vacante }`, vacant);
+  };
 
   deleteVacant( id: number ) {
     return this.http.delete(`${ this.baseUrl }/vacantes/${ id }`);

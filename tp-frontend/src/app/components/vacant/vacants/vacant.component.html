@@ -17,12 +17,12 @@
             <div class="example-button-row">
                 <div class="example-flex-container">
                     <div class="example-button-container">
-                        <button mat-mini-fab color="primary" matTooltip="Ver más" aria-label="Icon button with a visibility icon" (click)="seeMore(vacante.id_vacante)">
+                        <button mat-mini-fab color="primary" matTooltip="Ver más" aria-label="Icon button with a visibility icon" (click)="seeMore( vacante.id_vacante )">
                             <mat-icon>
                                 visibility
                             </mat-icon>
                         </button>
-                        <button mat-mini-fab color="accent" matTooltip="Editar vacante" aria-label="Icon button with a edit icon">
+                        <button mat-mini-fab color="accent" matTooltip="Editar vacante" aria-label="Icon button with a edit icon" (click)="editVacant( vacante.id_vacante )">
                             <mat-icon>
                                 edit
                             </mat-icon>

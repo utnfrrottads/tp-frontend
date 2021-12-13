@@ -52,5 +52,9 @@ export class VacantComponent implements OnInit {
   seeMore( id: number) {
     this.router.navigate( [ 'main/vacante', id ] );
   };
+
+  editVacant( id: number ) {
+    this.router.navigate( [ 'main/vacantes/editar-vacante', id ] );
+  };
   
 }

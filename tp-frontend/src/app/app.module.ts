@@ -11,6 +11,7 @@ import { DialogContentComponent } from './components/shared/dialog-content/dialo
 import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-detail.component';
+import { EditVacantComponent } from './components/vacant/edit-vacant/edit-vacant.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-
     DialogContentComponent,
     AddVacantComponent,
     VacantDetailComponent,
+    EditVacantComponent,
   ],
   imports: [
     BrowserModule,
