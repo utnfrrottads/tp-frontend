@@ -1,4 +1,4 @@
-.spinner-container {
+.spinner-container, .not-results-container {
     margin: 20px auto;
     text-align: center;
     background-color: #efebdd;
@@ -7,6 +7,10 @@
 .mat-spinner {
     margin: 0 auto;
     margin-bottom: 15px;
+}
+
+.not-results-container {
+    background-color: lightskyblue;
 }
 
 .container {

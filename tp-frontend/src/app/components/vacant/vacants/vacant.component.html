@@ -4,7 +4,12 @@
     <p>Por favor espere</p>
 </div>
 
-<div class="container" *ngIf="!loading">
+<div class="not-results-container" *ngIf="!loading && vacancies.length === 0">
+    <mat-icon style="margin-top: 10px;">info</mat-icon>
+    <h2>No hay vacantes para mostrar</h2>
+</div>
+
+<div class="container" *ngIf="!loading && vacancies.length > 0">
     <app-search-field></app-search-field>
     
     <div class="card-container">
