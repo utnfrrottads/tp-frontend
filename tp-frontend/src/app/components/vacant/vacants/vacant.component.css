@@ -1,3 +1,7 @@
+.container {
+    margin: 10px;
+}
+
 .card-container {
     display: flex;
     flex-flow: row wrap;

@@ -1,5 +1,7 @@
-<div class="card-container">
-
-    <app-vacant-card *ngFor="let vacant of vacancies; let i = index" [vacant]="vacant" [index]="i" (getAllVacanciesEvent)="reloadVacancies()"></app-vacant-card>
-
+<div class="container">
+    <app-search-field></app-search-field>
+    
+    <div class="card-container">
+        <app-vacant-card *ngFor="let vacant of vacancies; let i = index" [vacant]="vacant" [index]="i" (getAllVacanciesEvent)="reloadVacancies()"></app-vacant-card>
+    </div>
 </div>

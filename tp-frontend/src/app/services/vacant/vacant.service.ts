@@ -20,6 +20,10 @@ export class VacantService {
     return this.http.get<VacanteModel>(`${ this.baseUrl }/vacantes/${ id }`);
   };
 
+  getFilteredVacanciesByCompanyName( searchTerm: string ) {
+    return this.http.get<VacanteModel[]>(`${ this.baseUrl }/vacantes?companyName=${ searchTerm }`);
+  }
+
   addVacant( vacant: VacanteModel ): Observable<VacanteModel> {
     return this.http.post<VacanteModel>(`${ this.baseUrl }/vacantes`, vacant);
   };

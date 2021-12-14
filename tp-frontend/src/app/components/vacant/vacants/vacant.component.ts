@@ -1,9 +1,8 @@
 import { VacanteModel } from './../../../models/vacante-model';
-import { AlertService } from '../../../services/alert/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { VacantService } from '../../../services/vacant/vacant.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,10 +17,17 @@ export class VacantComponent implements OnInit {
   constructor( 
     private vacantService: VacantService,
     public dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
-    this.getAllVacancies();
+    this.activatedRoute.params.subscribe( params => {
+      if ( params.searchTerm ) {
+        this.filterVacancies( params.searchTerm );
+      } else {
+        this.getAllVacancies();
+      }
+    });
   }
 
   getAllVacancies() {
@@ -34,6 +40,14 @@ export class VacantComponent implements OnInit {
 
   reloadVacancies() {
     this.getAllVacancies();
-  }
+  };
+
+  filterVacancies( searchTerm: string ) {
+    this.vacantService.getFilteredVacanciesByCompanyName( searchTerm ).subscribe(
+      res => {
+        this.vacancies = res;
+      }
+    );
+  };
   
 }

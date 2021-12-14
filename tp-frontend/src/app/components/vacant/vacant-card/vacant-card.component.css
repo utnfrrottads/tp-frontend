@@ -1,9 +1,7 @@
 .example-card {
     background-color: wheat;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 150px;
-    margin: 5px;
+    flex: 1 1 auto;
+    margin: 5px 5px 5px 0px;
 }
 
 .mat-card-actions {

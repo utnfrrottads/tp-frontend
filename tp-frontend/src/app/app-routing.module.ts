@@ -7,17 +7,41 @@ import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-
 import { EditVacantComponent } from './components/vacant/edit-vacant/edit-vacant.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { 
+    path: '', 
+    redirectTo: 'main', 
+    pathMatch: 'full' 
+  },
   {
     path: 'main', component: MainComponent,
     children: [
-      { path: 'vacantes', component: VacantComponent },
-      { path: 'vacante/:id', component: VacantDetailComponent },
-      { path: 'vacantes/nueva-vacante', component: AddVacantComponent },
-      { path: 'vacantes/editar-vacante/:id', component: EditVacantComponent },
+      { 
+        path: 'vacantes',
+        component: VacantComponent
+      },
+      { 
+        path: 'vacante/:id',
+        component: VacantDetailComponent
+      },
+      { 
+        path: 'vacantes/nueva-vacante',
+        component: AddVacantComponent
+      },
+      { 
+        path: 'vacantes/editar-vacante/:id',
+        component: EditVacantComponent 
+      },
+      {
+        path: 'search/:searchTerm',
+        component: VacantComponent
+      }
     ]
   },
-  { path: '**', pathMatch: 'full', redirectTo: 'main' }
+  { 
+    path: '**', 
+    pathMatch: 'full', 
+    redirectTo: 'main' 
+  }
 ];
 
 @NgModule({

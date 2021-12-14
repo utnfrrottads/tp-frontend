@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-detail.component';
 import { EditVacantComponent } from './components/vacant/edit-vacant/edit-vacant.component';
 import { VacantCardComponent } from './components/vacant/vacant-card/vacant-card.component';
+import { SearchFieldComponent } from './components/search-field/search-field.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { VacantCardComponent } from './components/vacant/vacant-card/vacant-card
     VacantDetailComponent,
     EditVacantComponent,
     VacantCardComponent,
+    SearchFieldComponent,
   ],
   imports: [
     BrowserModule,
