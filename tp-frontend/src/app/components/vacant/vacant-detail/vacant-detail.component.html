@@ -37,6 +37,13 @@
             <textarea matInput name="descripcion" id="descripcion" [value]="vacant.descripcion" *ngIf="vacant.descripcion !== null && vacant.descripcion !== ''" disabled></textarea>
         </mat-form-field>
     </div>
+    
+    <div>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label for="estado">Estado de la vacante</mat-label>
+            <input matInput name="estado" id="estado" [value]="vacant.estado" disabled>
+        </mat-form-field>
+    </div>
 
     <h2>Requerimientos del cargo</h2>
 
