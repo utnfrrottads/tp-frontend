@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class VacantComponent implements OnInit {
 
   vacancies: VacanteModel[] = [];
+  loading: boolean = false;
   
   constructor( 
     private vacantService: VacantService,
@@ -21,6 +22,7 @@ export class VacantComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.activatedRoute.params.subscribe( params => {
       if ( params.searchTerm ) {
         this.filterVacancies( params.searchTerm );
@@ -34,6 +36,7 @@ export class VacantComponent implements OnInit {
     this.vacantService.getVacancies().subscribe(
       res => {
         this.vacancies = res;
+        this.loading = false;
       }
     );
   };
@@ -46,6 +49,7 @@ export class VacantComponent implements OnInit {
     this.vacantService.getFilteredVacanciesByCompanyName( searchTerm ).subscribe(
       res => {
         this.vacancies = res;
+        this.loading = false;
       }
     );
   };

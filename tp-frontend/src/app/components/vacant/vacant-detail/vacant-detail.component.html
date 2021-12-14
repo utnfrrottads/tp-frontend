@@ -1,3 +1,9 @@
+<div class="spinner-container" *ngIf="loading || !vacant">
+    <h2>Cargando datos...</h2>
+    <mat-spinner></mat-spinner>
+    <p>Por favor espere</p>
+</div>
+
 <div class="container" *ngIf="!loading && vacant">
 
     <h1>Detalle de la vacante</h1>

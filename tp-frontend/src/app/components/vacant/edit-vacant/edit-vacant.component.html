@@ -1,4 +1,10 @@
-<ng-container *ngIf="!loading && selectedVacant">
+<div class="spinner-container" *ngIf="loading || !selectedVacant">
+    <h2>Cargando datos...</h2>
+    <mat-spinner></mat-spinner>
+    <p>Por favor espere</p>
+</div>
+
+<div *ngIf="!loading && selectedVacant">
 
     <h1>Editar vacante</h1>
 
@@ -94,4 +100,4 @@
 
     </form>
 
-</ng-container>
+</div>
