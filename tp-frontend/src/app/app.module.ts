@@ -12,6 +12,7 @@ import { AddVacantComponent } from './components/vacant/add-vacant/add-vacant.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VacantDetailComponent } from './components/vacant/vacant-detail/vacant-detail.component';
 import { EditVacantComponent } from './components/vacant/edit-vacant/edit-vacant.component';
+import { VacantCardComponent } from './components/vacant/vacant-card/vacant-card.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { EditVacantComponent } from './components/vacant/edit-vacant/edit-vacant
     AddVacantComponent,
     VacantDetailComponent,
     EditVacantComponent,
+    VacantCardComponent,
   ],
   imports: [
     BrowserModule,

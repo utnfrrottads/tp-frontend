@@ -1,0 +1,15 @@
+.example-card {
+    background-color: wheat;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 150px;
+    margin: 5px;
+}
+
+.mat-card-actions {
+    margin: 0;
+}
+
+.mat-card-title {
+    line-height: 1.2;
+}

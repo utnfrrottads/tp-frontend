@@ -14,20 +14,17 @@ import { Router } from '@angular/router';
 export class VacantComponent implements OnInit {
 
   vacancies: VacanteModel[] = [];
-  msg = "¿Está seguro que desea eliminar la vacante?";
-
+  
   constructor( 
     private vacantService: VacantService,
-    private alertService: AlertService,
     public dialog: MatDialog,
-    private router: Router
     ) { }
 
   ngOnInit(): void {
-    this.getAllVacants();
+    this.getAllVacancies();
   }
 
-  getAllVacants() {
+  getAllVacancies() {
     this.vacantService.getVacancies().subscribe(
       res => {
         this.vacancies = res;
@@ -35,26 +32,8 @@ export class VacantComponent implements OnInit {
     );
   };
 
-  deleteVacant( id: number ) {
-    this.alertService.confirm( this.msg ).afterClosed().subscribe( result => {
-      if ( result ) {
-        this.vacantService.deleteVacant( id ).subscribe(
-          () => {
-            this.alertService.openSnackBar('Vacante eliminada con éxito');
-            this.getAllVacants();
-          },
-          error => console.log(error)
-        ); 
-      }
-    });
-  };
-
-  seeMore( id: number) {
-    this.router.navigate( [ 'main/vacante', id ] );
-  };
-
-  editVacant( id: number ) {
-    this.router.navigate( [ 'main/vacantes/editar-vacante', id ] );
-  };
+  reloadVacancies() {
+    this.getAllVacancies();
+  }
   
 }
