@@ -2,13 +2,14 @@ import { VacanteModel } from './../../models/vacante-model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacantService {
 
-  readonly baseUrl: string = 'http://localhost:8080'
+  readonly baseUrl: string = environment.baseUrl;
 
   constructor( private http: HttpClient ) { }
 
