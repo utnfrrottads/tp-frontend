@@ -24,7 +24,7 @@ class NotFoundError extends ApiError {
         if (entityClass === undefined) {
             entityClass = '';
         }
-        super('NOT_FOUND', `La entidad ${entityClass} con id '${id}' no fue encontrada.`);
+        super('NOT_FOUND', `La entidad '${entityClass}' con id '${id}' no fue encontrada`);
         this.id = id;
     }
 }
@@ -43,7 +43,7 @@ class AttributeMissingError extends ApiError {
         if (attributes instanceof Set) {
             attributes = [...attributes];
         }
-        super('ATTRIBUTE_MISSING', 'Faltan atributos obligatorios en la petición.');
+        super('ATTRIBUTE_MISSING', 'Faltan atributos obligatorios en la petición');
         this.attributes = attributes;
     }
 }
@@ -54,7 +54,7 @@ class AttributeMissingError extends ApiError {
 class InvalidAttributeError extends ApiError {
     /**
      * @param {string} message El mensaje de validación.
-     * @param {string|string[]} attr El o los atributos del incorrectos.
+     * @param {string|string[]} attr El o los atributos incorrectos.
      */
     constructor(message, attr) {
         if (typeof attr === 'string') {
