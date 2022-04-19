@@ -1,0 +1,41 @@
+<mat-card class="example-card">
+
+    <mat-card-title>
+        Puesto: {{ vacant.cargo }}
+    </mat-card-title>
+    <mat-card-subtitle>
+        Empresa: {{ vacant.empresa.razon_social }}
+    </mat-card-subtitle>
+    <mat-card-content>
+        <p *ngIf="vacant.descripcion !== null && vacant.descripcion !== ''">
+            {{ vacant.descripcion }}
+        </p>
+        <small [ngStyle]="{ 'color': '#8d5b00' }" *ngIf="vacant.descripcion === null || vacant.descripcion === ''">
+            No se ha definido una descripción para este puesto.
+        </small>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="example-button-row">
+            <div class="example-flex-container">
+                <div class="example-button-container">
+                    <button mat-mini-fab color="primary" matTooltip="Ver más" aria-label="Icon button with a visibility icon" (click)="seeMore( vacant.id_vacante )">
+                        <mat-icon>
+                            visibility
+                        </mat-icon>
+                    </button>
+                    <button mat-mini-fab color="accent" matTooltip="Editar vacante" aria-label="Icon button with a edit icon" (click)="editVacant( vacant.id_vacante )">
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" matTooltip="Eliminar vacante" aria-label="Icon button with a delete icon" (click)="deleteVacant( vacant.id_vacante )">
+                        <mat-icon>
+                            delete
+                        </mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-actions>
+
+</mat-card>

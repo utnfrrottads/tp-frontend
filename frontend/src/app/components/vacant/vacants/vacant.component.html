@@ -1,0 +1,18 @@
+<div class="spinner-container" *ngIf="loading">
+    <h2>Cargando datos...</h2>
+    <mat-spinner></mat-spinner>
+    <p>Por favor espere</p>
+</div>
+
+<div class="not-results-container" *ngIf="!loading && vacancies.length === 0">
+    <mat-icon style="margin-top: 10px;">info</mat-icon>
+    <h2>No hay vacantes para mostrar</h2>
+</div>
+
+<div class="container" *ngIf="!loading && vacancies.length > 0">
+    <app-search-field></app-search-field>
+    
+    <div class="card-container">
+        <app-vacant-card *ngFor="let vacant of vacancies; let i = index" [vacant]="vacant" [index]="i" (getAllVacanciesEvent)="reloadVacancies()"></app-vacant-card>
+    </div>
+</div>
