@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { useQuery } from '@tanstack/react-query'
 import styles from '../../styles/Home.module.css'
 
 const requestOptions = {
@@ -11,42 +12,36 @@ const requestOptions = {
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
+const useRestaurantData = (id: string) => {
+  return useQuery(['restaurant-query'], async () => {
+    return (
+      await fetch(`${url}/restaurants/${id}?detailed=true`, requestOptions)
+    ).json()
+  })
+}
+
 const Restaurant: NextPage = () => {
   const router = useRouter()
-  const [restaurant, setRestaurant] = useState<any>()
   const { id } = router.query
 
-  const getRestaurant = async () => {
-    const data = await fetch(
-      `${url}/restaurants/${id}?detailed=true`,
-      requestOptions
-    ).then(res => res.json())
+  const { error, data, isLoading, isError } = useRestaurantData(id as string)
 
-    return data.restaurant
-  }
+  if (!id || isLoading) return <span>Loading ...</span>
 
-  useEffect(() => {
-    getRestaurant().then(res => setRestaurant(res))
-  }, [id])
-
-  if (!id) {
-    return null
-  }
-
-  if (!restaurant) {
-    return null
+  if (isError) {
+    return <span>Error: {(error as Error).message}</span>
   }
 
   return (
     <div className={styles.container}>
       <div>
-        <h1>{restaurant.name}</h1>
-        <p>{restaurant.description}</p>
-        <p>{restaurant.location}</p>
-        <p>Delivery: ${restaurant.deliveryPriceBase}</p>
+        <h1>{data.name}</h1>
+        <p>{data.description}</p>
+        <p>{data.location}</p>
+        <p>Delivery: ${data.deliveryPriceBase}</p>
 
-        {restaurant.tags
-          ? restaurant.tags.map((m: any) => (
+        {data.tags
+          ? data.tags.map((m: any) => (
               // eslint-disable-next-line no-underscore-dangle
               <div key={m._id}>
                 <p>{m.description}</p>
@@ -55,8 +50,8 @@ const Restaurant: NextPage = () => {
           : 'No tags'}
 
         <div>
-          {restaurant.meals &&
-            restaurant.meals.map((m: any) => (
+          {data.meals &&
+            data.meals.map((m: any) => (
               // eslint-disable-next-line no-underscore-dangle
               <div key={m._id} className={styles.card}>
                 <h2>{m.name}</h2>
