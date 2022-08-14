@@ -11,7 +11,7 @@ import { IProvider } from '../entities/provider';
 })
 export class HttpService {
 
-  readonly baseUrl = 'http://192.168.43.37:4000/api';
+  readonly baseUrl = 'http://localhost:4000/api';
 
   constructor(
     private http: HttpClient,
