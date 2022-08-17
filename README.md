@@ -1,5 +1,10 @@
 # TP Frontend 2022
 
+1. Ejecutar en una linea de comando `git clone https://github.com/germantano8/TP-TTADS-FRONTEND`
+2. Correr `yarn install`
+3. Asegurarse de estar corriendo el backend en http://localhost:3700
+4. Correr `yarn dev`
+
 ## 1 - Enunciado
 ### 1.1 - Desarrollo
 Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
