@@ -114,3 +114,17 @@
     flex-direction: column;
   }
 }
+
+.restaurantContainer {
+  padding: 1em;
+  margin: 1em;
+  border: 1px solid rgb(129, 129, 129);
+  width: 30%;
+  border-radius: 10px;
+}
+
+.restaurantContainer:hover {
+  background: linear-gradient(52deg, #1c7ed6 3%, #22b8cf 97%);
+  color: #fafafa;
+  transition-duration: 0.2s;
+}

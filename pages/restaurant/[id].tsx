@@ -26,6 +26,7 @@ const Restaurant: NextPage = () => {
 
   const { error, data, isLoading, isError } = useRestaurantData(id as string)
 
+  if (data === undefined || !data.name) return <span>Loading ...</span>
   if (!id || isLoading) return <span>Loading ...</span>
 
   if (isError) {
