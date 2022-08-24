@@ -11,37 +11,43 @@ const urlUser =
 // Aca tendria que ir una especie de session con la id del usuario que se logeo para obtener sus datos
 
 const urlMessages = `http://localhost:9000/api/v1/messages/filter/${idUserLogged}`;
-// Traigo todos los mensajes del usuario que esta "logeado"
+
+// Traigo todos los mensajes del usuario que esta "logeado" con OTRO ENDPOINT para facilitar la request
 //con los mensajes del usuario al que clickeo el chat y vicebersa
 // despues ordeno por fecha y los muestro de manera descendiente
-
 // Testing user id: 62eaa14c3901f21e944abfcd
 
-export default function Chat({ list, allMessagesUserLogged }) {
+export default function Chat({ list, messagesHistory }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [friend, setFriend] = useState(null);
+  const [friend, setFriend] = useState({});
   const [dataChatUser, setDataChatUser] = useState([]);
 
-  // Ver si usar useEffect para que se limite la ejecucion
   const exitChat = () => setIsOpen(false);
 
-  const handleChatIsOpen = async (idFriend) => {
+  const handleChatIsOpen = (idFriend) => {
     setIsOpen(true);
-    setFriend(idFriend);
-    setDataChatUser(
-      allMessagesUserLogged.map((msg) => {
-        if (msg.sender === friend || msg.receiver === friend) {
-          return msg;
-        }
-      })
-    );
-    // console.log(dataChatUser);
+    if (idFriend !== friend._id && friend !== {}) {
+      const f = list.find((user) => user._id === idFriend);
+      setFriend(f);
+    }
   };
-  // Aca obtendria la id correspondiente, mejorar
+
+  useEffect(() => {
+    const filterMsg = () => {
+      const newData = messagesHistory.map((msg) => {
+        if (msg.sender === friend._id || msg.receiver === friend._id) {
+          return msg;
+        } else null;
+      });
+      setDataChatUser(newData);
+      console.log(dataChatUser);
+    };
+    filterMsg();
+  }, [friend]);
 
   return (
     <div className="h-screen w-screen flex flex-row overflow-y-auto">
-      <div className="h-screen w-1/4 p-6 bg-slate-500">
+      <div className="h-full w-1/4 p-6 bg-slate-500">
         <Header />
         <hr />
         <FriendList handleChat={handleChatIsOpen} dataList={list} />
@@ -49,12 +55,18 @@ export default function Chat({ list, allMessagesUserLogged }) {
         <Footer />
         {/* Faltaria el dashboard de los mensajes y demas */}
       </div>
-      {isOpen ? (
-        <Dashboard messages={dataChatUser} exitChat={exitChat} />
-      ) : (
-        // Hacer componente
-        <p>Pagina sin chats</p>
-      )}
+      <div className="h-full w-3/4">
+        {isOpen ? (
+          <Dashboard
+            messages={dataChatUser}
+            exitChat={exitChat}
+            friend={friend}
+          />
+        ) : (
+          // Hacer componente
+          <p>Pagina sin chats</p>
+        )}
+      </div>
     </div>
   );
 }
@@ -64,13 +76,13 @@ export async function getStaticProps() {
   const list = await res.json();
   // Traigo todos los amigos
   const resMessages = await fetch(urlMessages);
-  const allMessagesUserLogged = await resMessages.json();
+  const messagesHistory = await resMessages.json();
   // Traigo todos los mensajes donde sea receiver o sender
 
   return {
     props: {
       list,
-      allMessagesUserLogged,
+      messagesHistory,
     },
   };
 }
