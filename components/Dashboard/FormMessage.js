@@ -1,5 +1,9 @@
 // Parte de abajo del chat cambiar nombre si hay algo mejor
-export default function FormMessage(params) {
+export default function FormMessage({
+  handleSubmit,
+  handleChangeInput,
+  message,
+}) {
   return (
     <div className="flex items-center h-auto justify-between w-full p-3 border-t border-gray-600">
       <button>
@@ -39,8 +43,10 @@ export default function FormMessage(params) {
         type="text"
         placeholder="Message"
         className="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
-        name="message"
+        maxLength={500}
         required
+        value={message}
+        onChange={(e) => handleChangeInput(e)}
       />
       <button>
         <svg
@@ -64,6 +70,7 @@ export default function FormMessage(params) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
+          onClick={() => handleSubmit()}
         >
           <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
         </svg>
