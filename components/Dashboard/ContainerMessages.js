@@ -3,7 +3,7 @@ const idUserLogged = "62eaa14c3901f21e944abfcd";
 
 export default function ContainerMessages({ messages }) {
   return (
-    <div className="h-5/6 w-full p-6 overflow-y-auto">
+    <div className="h-5/6 w-full px-6 overflow-y-auto scrollbar">
       <ul className="space-y-6">
         {messages.map((m, i) => {
           if (m !== undefined) {

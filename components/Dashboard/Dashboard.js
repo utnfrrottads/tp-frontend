@@ -42,10 +42,7 @@ export default function Dashboard({ messages, exitChat, friend }) {
 
     const response = await fetch(endpoint, options);
 
-    const result = await response
-      .json()
-      .then(alert("Msg sended"))
-      .then(forceReload());
+    await response.json().then(alert("Msg sended")).then(forceReload());
   };
 
   const msgs = messages.map((msg) => {
@@ -59,7 +56,7 @@ export default function Dashboard({ messages, exitChat, friend }) {
     } else return undefined;
   });
   return (
-    <div className="h-full w-full relative flex flex-col justify-between">
+    <div className="h-full w-full relative flex flex-col justify-between px-6 py-4">
       <HeaderProfile friend={friend} />
       <ContainerMessages messages={msgs} />
       <FormMessage

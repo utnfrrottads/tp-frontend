@@ -46,11 +46,14 @@ export default function Chat({ list, messagesHistory }) {
   }, [friend]);
 
   return (
-    <div className="h-screen w-screen flex flex-row overflow-y-auto">
-      <div className="h-full w-1/4 p-6 bg-slate-500">
+    <div className="h-screen w-screen flex flex-row overflow-y-hidden">
+      <div className="h-full w-1/4 bg-slate-200 py-4">
         <Header />
-        <hr />
-        <FriendList handleChat={handleChatIsOpen} dataList={list} />
+        <FriendList
+          handleChat={handleChatIsOpen}
+          dataList={list}
+          dataChatHistory={messagesHistory}
+        />
         <hr />
         <Footer />
         {/* Faltaria el dashboard de los mensajes y demas */}
