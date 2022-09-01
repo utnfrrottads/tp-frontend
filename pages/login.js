@@ -5,7 +5,7 @@ export default function Login(props){
 
 
     return(
-        <div>
+        <div className="flex justify-center items-center h-screen w-screen">
             <LoginContaner
                 
             />

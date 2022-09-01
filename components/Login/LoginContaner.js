@@ -77,8 +77,7 @@ export default function LoginContaner(props){
     
 
     return(
-        <div>
-            {!error?<p></p>:<p>Suerte en la prox</p>}
+        <div className="bg-gray-300 p-5 h-[200px] w-[350px] rounded-lg shadow-xl ">
             <FormLogin
                 handleSubmit={handleSubmit}
                 handleChangeInput={handleChangeInput}
