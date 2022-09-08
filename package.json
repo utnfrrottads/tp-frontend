@@ -10,8 +10,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.3",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.4",
     "@tanstack/react-query": "^4.0.10",
     "@tanstack/react-query-devtools": "^4.0.10",
+    "formik": "^2.2.9",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
