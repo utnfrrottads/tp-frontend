@@ -1,0 +1,24 @@
+.navbar{
+    background: #F76776;
+    color:#ffffff;
+    padding: 0.5rem 1rem;
+    display:flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+
+.avatar{
+    display:flex;
+    align-items: center;
+}
+
+.avatar span{
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+}
+
+.avatar:hover{
+    cursor: pointer;
+}
