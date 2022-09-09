@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import type { NextPage } from 'next'
 import { useQuery } from '@tanstack/react-query'
+import { Avatar, Container, Grid } from '@mui/material'
 import styles from '../../styles/Home.module.css'
 
 const requestOptions = {
@@ -22,22 +22,43 @@ const RestaurantHomePage: NextPage = () => {
 
   if (isLoading) return <span>Loading ...</span>
 
-  if (isError) {
-    return <span>Error: {(error as Error).message}</span>
-  }
+  if (isError) return <span>Error: {(error as Error).message}</span>
 
   return (
-    <>
-      <h1>Restaurants</h1>
-      <div className={styles.container}>
-        {data.map((restaurant: any) => (
-          // eslint-disable-next-line no-underscore-dangle
-          <a key={restaurant._id} href={`restaurant/${restaurant._id}`}>
-            <div className={styles.restaurantContainer}>{restaurant.name}</div>
-          </a>
-        ))}
-      </div>
-    </>
+    <div className={styles.container}>
+      {data.map((restaurant: any) => (
+        // eslint-disable-next-line no-underscore-dangle
+        <a href={`restaurant/${restaurant._id}`}>
+          <Container
+            maxWidth="md"
+            sx={{
+              border: 1,
+              borderRadius: '15px',
+              marginTop: '2em'
+            }}
+          >
+            <Grid container columnSpacing={10} padding="2em">
+              <Grid item xs={8}>
+                <Grid container flexDirection="column" rowSpacing={4}>
+                  <Grid item>{restaurant.name}</Grid>
+                  <Grid item>{restaurant.description}</Grid>
+                  <Grid item>
+                    TODO: calcular precio y demora en base a distancia
+                    user-restaurant
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={4}>
+                <Avatar
+                  src={restaurant.image}
+                  alt={`${restaurant.name} logo`}
+                />
+              </Grid>
+            </Grid>
+          </Container>
+        </a>
+      ))}
+    </div>
   )
 }
 
