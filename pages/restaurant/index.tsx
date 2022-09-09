@@ -1,8 +1,14 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import { useQuery } from '@tanstack/react-query'
-import { Avatar, Container, Grid } from '@mui/material'
-import styles from '../../styles/Home.module.css'
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Typography
+} from '@mui/material'
 
 const requestOptions = {
   method: 'GET',
@@ -25,40 +31,44 @@ const RestaurantHomePage: NextPage = () => {
   if (isError) return <span>Error: {(error as Error).message}</span>
 
   return (
-    <div className={styles.container}>
+    <Container maxWidth="md">
       {data.map((restaurant: any) => (
         // eslint-disable-next-line no-underscore-dangle
         <a href={`restaurant/${restaurant._id}`}>
-          <Container
-            maxWidth="md"
-            sx={{
-              border: 1,
-              borderRadius: '15px',
-              marginTop: '2em'
-            }}
-          >
-            <Grid container columnSpacing={10} padding="2em">
-              <Grid item xs={8}>
-                <Grid container flexDirection="column" rowSpacing={4}>
-                  <Grid item>{restaurant.name}</Grid>
-                  <Grid item>{restaurant.description}</Grid>
-                  <Grid item>
-                    TODO: calcular precio y demora en base a distancia
-                    user-restaurant
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={4}>
-                <Avatar
-                  src={restaurant.image}
-                  alt={`${restaurant.name} logo`}
-                />
-              </Grid>
-            </Grid>
-          </Container>
+          <Card sx={{ display: 'flex', marginTop: '2rem' }}>
+            <CardMedia
+              component="img"
+              sx={{ width: 150 }}
+              image={restaurant.image}
+              alt={`${restaurant.name} logo`}
+            />
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flex: '1 0 auto' }}>
+                <Typography component="div" variant="h5">
+                  {restaurant.name}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  component="div"
+                >
+                  {restaurant.description}
+                </Typography>
+                <br />
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  component="div"
+                >
+                  TODO: calcular precio y demora en base a distancia
+                  user-restaurant
+                </Typography>
+              </CardContent>
+            </Box>
+          </Card>
         </a>
       ))}
-    </div>
+    </Container>
   )
 }
 
