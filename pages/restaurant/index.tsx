@@ -10,10 +10,20 @@ interface Props {
   initialRestaurants: any[]
   tags: any[]
 }
+
 const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
-  const [restaurants] = useState(initialRestaurants)
+  const [restaurants, setRestaurants] = useState(initialRestaurants)
   const [filter, setFilter] = useState('')
 
+  const setRestaurantsByTag = async (tag: any) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const data = await // eslint-disable-next-line no-underscore-dangle
+    (await fetch(`${url}/restaurants/?tag=${tag._id}`, requestOptions)).json()
+    setRestaurants(data)
+  }
   return (
     <>
       <Container maxWidth="md" sx={{ marginY: '2em' }}>
@@ -48,7 +58,9 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
           <Grid item>
             <Typography variant="h4">Categorias</Typography>
             {tags.map((tag: any) => (
-              <TagCard tag={tag} />
+              <Box onClick={() => setRestaurantsByTag(tag)}>
+                <TagCard tag={tag} />
+              </Box>
             ))}
           </Grid>
         </Grid>
