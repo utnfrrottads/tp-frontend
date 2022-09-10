@@ -1,33 +1,30 @@
-import React from 'react'
-import type { NextPage } from 'next'
-import { useQuery } from '@tanstack/react-query'
-import { Container } from '@mui/material'
+import React, { useState } from 'react'
+import type { GetServerSideProps } from 'next'
+import { Container, TextField } from '@mui/material'
 import RestaurantCard from '../../components/RestaurantCard'
-
-const requestOptions = {
-  method: 'GET',
-  headers: { 'Content-Type': 'application/json' }
-}
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
-const useRestaurants = () => {
-  return useQuery(['restaurants-query'], async () => {
-    return (await fetch(`${url}/restaurants/`, requestOptions)).json()
-  })
+interface Props {
+  initialRestaurants: any[]
 }
-
-const RestaurantHomePage: NextPage = () => {
-  const { error, data, isLoading, isError } = useRestaurants()
-
-  if (isLoading) return <span>Loading ...</span>
-
-  if (isError) return <span>Error: {(error as Error).message}</span>
+const RestaurantHomePage = ({ initialRestaurants }: Props) => {
+  const [restaurants] = useState(initialRestaurants)
+  const [filter, setFilter] = useState('')
 
   return (
-    <Container maxWidth="md">
-      {data &&
-        data.map((restaurant: any) => (
+    <Container maxWidth="md" sx={{ marginY: '2em' }}>
+      <TextField
+        id="filter"
+        name="filter"
+        onChange={e => setFilter(e.currentTarget.value.toLowerCase())}
+        label="Search for restaurants"
+        fullWidth
+      />
+
+      {restaurants
+        .filter(restaurant => restaurant.name.toLowerCase().includes(filter))
+        .map((restaurant: any) => (
           // eslint-disable-next-line no-underscore-dangle
           <a href={`restaurant/${restaurant._id}`}>
             <RestaurantCard restaurant={restaurant} />
@@ -35,6 +32,20 @@ const RestaurantHomePage: NextPage = () => {
         ))}
     </Container>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  }
+  const response = await fetch(`${url}/restaurants/`, requestOptions)
+  const data = await response.json()
+  return {
+    props: {
+      initialRestaurants: data
+    }
+  }
 }
 
 export default RestaurantHomePage
