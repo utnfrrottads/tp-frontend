@@ -1,16 +1,8 @@
 import React, { useState } from 'react'
 import type { GetServerSideProps } from 'next'
-import {
-  Container,
-  Grid,
-  TextField,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia
-} from '@mui/material'
+import { Container, Grid, TextField, Box, Typography } from '@mui/material'
 import RestaurantCard from '../../components/RestaurantCard'
+import TagCard from '../../components/TagCard'
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
@@ -53,22 +45,10 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
                 </a>
               ))}
           </Grid>
-          <Grid item xs={2.5}>
+          <Grid item>
             <Typography variant="h4">Categorias</Typography>
             {tags.map((tag: any) => (
-              <Card sx={{ display: 'flex' }}>
-                <CardContent>
-                  <Typography component="div" variant="h5">
-                    {tag.description}
-                  </Typography>
-                </CardContent>
-                <CardMedia
-                  component="img"
-                  sx={{ width: 200, height: 100 }}
-                  image="https://www.minervafoods.com/wp-content/uploads/2018/08/como_fazer_hamburguer_caseiro_1.jpg"
-                  alt="Live from space album cover"
-                />
-              </Card>
+              <TagCard tag={tag} />
             ))}
           </Grid>
         </Grid>
