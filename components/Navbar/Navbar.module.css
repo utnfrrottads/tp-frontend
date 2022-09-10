@@ -3,6 +3,7 @@
     color:#ffffff;
     padding: 0.5rem 1rem;
     display:flex;
+    height: 64px;
     align-items: center;
     width: 100%;
     justify-content: space-between;
@@ -21,4 +22,8 @@
 
 .avatar:hover{
     cursor: pointer;
+}
+
+.navbar .loginButton{
+    background:"red",
 }
