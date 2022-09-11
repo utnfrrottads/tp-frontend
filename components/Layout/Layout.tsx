@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import styles from './Layout.module.css';
-import Button from '@mui/material/Button';
-import { CgLogIn } from 'react-icons/cg';
 
 interface LayoutProps {
     children: React.ReactNode
@@ -10,30 +8,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
 
-
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-
+    const LOGGED_IN: boolean = true;    //Variable solo para testing, eliminar al terminar de usarla
 
     return (
 
-        <main>
-            <Navbar auth={null} setMenuIsOpen={setMenuIsOpen} menuIsOpen={menuIsOpen} />
+        <main className={styles.main}>
+            <Navbar auth={LOGGED_IN ? {user_id:"1",user_name:"Nombre y Apellido", user_email: "asdas@gmail.com", user_profile_photo: "s"} : null} />
             <section className={styles.body}>
                 {children}
             </section>
-            <div style={{ height: menuIsOpen ? "calc(100% - 64px)" : "0" }} className={styles.menu}>
-                <Button sx={{
-                    background: "#FFFFFF",
-                    color: "#F76776",
-                    border: "none",
-                    "&:hover": {
-                        background: "#DADADA"
-                    }
-                }}
-                    variant="contained" size="small" startIcon={<CgLogIn />}>
-                    Ingresar
-                </Button>
-            </div>
         </main>
 
     )

@@ -4,10 +4,12 @@ import Layout from '../components/Layout/Layout'
 
 const Test: NextPage = () => {
 
-    return(
-            <Layout>
-                ESTE ES UNA PAGE WRAPPEADA
-            </Layout>
+    return (
+        <Layout>
+            <>
+
+            </>
+        </Layout>
     )
 }
 
