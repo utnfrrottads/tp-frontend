@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
+import type { GetServerSideProps, NextPage } from 'next'
 import styles from '../../styles/Home.module.css'
 
 const requestOptions = {
@@ -12,27 +10,7 @@ const requestOptions = {
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
-const useRestaurantData = (id: string) => {
-  return useQuery(['restaurant-query'], async () => {
-    return (
-      await fetch(`${url}/restaurants/${id}?detailed=true`, requestOptions)
-    ).json()
-  })
-}
-
-const Restaurant: NextPage = () => {
-  const router = useRouter()
-  const { id } = router.query
-
-  const { error, data, isLoading, isError } = useRestaurantData(id as string)
-
-  if (data === undefined || !data.name) return <span>Loading ...</span>
-  if (!id || isLoading) return <span>Loading ...</span>
-
-  if (isError) {
-    return <span>Error: {(error as Error).message}</span>
-  }
-
+const Restaurant: NextPage = ({ restaurant: data }: any) => {
   return (
     <div className={styles.container}>
       <div>
@@ -64,6 +42,20 @@ const Restaurant: NextPage = () => {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { id } = ctx.query
+  const data = await fetch(
+    `${url}/restaurants/${id}?detailed=true`,
+    requestOptions
+  ).then(res => res.json())
+
+  return {
+    props: {
+      restaurant: data
+    }
+  }
 }
 
 export default Restaurant
