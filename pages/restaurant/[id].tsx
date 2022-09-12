@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import type { GetServerSideProps, NextPage } from 'next'
+import { Box } from '@mui/system'
+import { Star } from '@mui/icons-material'
 import styles from '../../styles/Home.module.css'
 
 const requestOptions = {
@@ -13,11 +16,40 @@ const url = process.env.NEXT_PUBLIC_API_URL
 const Restaurant: NextPage = ({ restaurant: data }: any) => {
   return (
     <div className={styles.container}>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+
       <div>
+        <Box sx={{ marginBottom: 7 }}>
+          <Box
+            sx={{
+              height: 233,
+              background: '#22344f'
+            }}
+          />
+          <Box
+            component="img"
+            sx={{
+              width: 150,
+              display: 'block',
+              left: '132px',
+              transform: 'translate(-40%, -65%)',
+              position: 'absolute',
+              borderRadius: '17px'
+            }}
+            src={data.image}
+            alt={`${data.name} logo`}
+          />
+        </Box>
+
         <h1>{data.name}</h1>
+
+        <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+          <Star style={{ opacity: 0.55, color: '#faaf00' }} />
+          <p>4.2</p> |<p>Delivery: ${data.deliveryPriceBase}</p>
+        </Box>
+
         <p>{data.description}</p>
         <p>{data.location}</p>
-        <p>Delivery: ${data.deliveryPriceBase}</p>
 
         {data.tags
           ? data.tags.map((m: any) => (
