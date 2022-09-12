@@ -1,16 +1,21 @@
 import FormLogin from "./FormLogin";
 import { useEffect, useState } from "react";
-import { sign } from "jsonwebtoken";
-import { serialize } from "cookie";
+import {useUser} from '../../context/userContext'
+import { useRouter } from 'next/router'
 
 
 const endpoint = "http://localhost:9000/api/v1/users/"
 
 export default function LoginContaner(props){
 
+  const router = useRouter();
+
     const [usernameForm, setUsernameForm] = useState("");
     const [passwordForm, setPasswordForm] = useState("");
     const [error, setError] = useState(false)
+
+    const {user,setUser} = useUser();
+
 
     const handleChangeInput = (event) => {
         if(event.target.type == "password") {setPasswordForm(event.target.value);}
@@ -21,57 +26,42 @@ export default function LoginContaner(props){
 
     const handleSubmit = async ()=>{
 
-      const data = {
-        username: usernameForm,
-        password: passwordForm,
+      // const data = {
+      //   username: usernameForm,
+      //   password: passwordForm,
         
-      };
+      // };
   
-      const JSONdata = JSON.stringify(data);
+      // const JSONdata = JSON.stringify(data);
   
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSONdata,
-      };
+      // const options = {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSONdata,
+      // };
   
-      const response = await fetch('/api/auth/login', options);
+      // const response = await fetch('/api/auth/login', options);
 
-      return response.json()
+      // return response.json()
+      const response = await fetch(endpoint);
+      const data =  await response.json();
+      const users = data.users;
+
       
-      // const data =  await response.json();
-      // const users = data.users;
+      const loggedUser = await users.find((user) =>{
+        return (user.name === usernameForm && user.password === passwordForm)
+      });
 
-      
-      // const loggedUser = await users.filter((user) =>{
-      //     return (user.name === usernameForm && user.password === passwordForm)
-      // });
-
-      // if(loggedUser == []) {setError(true);
-      //   return }; // Hardcode, por si se erra en el login
+      if(!loggedUser) {setError(true);
+       return}; // Hardcode, por si se erra en el login
       // // Creo la cookie, en caso de que no haya usuario, devuelvo un forbiden y algun
-      
-      // const token = await sign({
-      //   exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
-      //   userID:loggedUser._id,
 
-      // }, 
-      // "secret");
 
-      // const serialized = await serialize ("userToken", token,{
-      //   httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "strict",
-      // maxAge: 1000 * 60 * 60 * 24 * 30,
-      // path: "/",
-      // });
-  
-      // await response.setHeader("Set-Cookie", serialized);
-      // return response
+      setUser(loggedUser)
+      router.push('/')
 
-      // No funciona porque la response no se puede editar
   }
       
     
