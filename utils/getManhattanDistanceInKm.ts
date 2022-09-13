@@ -1,9 +1,8 @@
-const getManhattanDistanceInKm = (
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-) => {
+const getManhattanDistanceInKm = (location1: any, location2: any) => {
+  const lat1 = location1.latitude
+  const lon1 = location1.longitude
+  const lat2 = location2.latitude
+  const lon2 = location2.longitude
   let R = 6371 // Radius of the earth in km
   let dLat = deg2rad(lat2 - lat1) // deg2rad below
   let dLon = deg2rad(lon2 - lon1)

@@ -1,10 +1,13 @@
 import React from 'react'
 import { Card, CardMedia, Box, CardContent, Typography } from '@mui/material'
+import getDeliveryTime from '../utils/getDeliveryTime'
+import getPrice from '../utils/getPrice'
 
 interface Props {
   restaurant: any
+  userLocation: any
 }
-const RestaurantCard = ({ restaurant }: Props) => {
+const RestaurantCard = ({ restaurant, userLocation }: Props) => {
   return (
     <Card sx={{ display: 'flex', marginTop: '2rem' }}>
       <CardMedia
@@ -31,7 +34,9 @@ const RestaurantCard = ({ restaurant }: Props) => {
             color="text.secondary"
             component="div"
           >
-            TODO: calcular precio y demora en base a distancia user-restaurant
+            {getDeliveryTime(userLocation, restaurant)}
+            <br />
+            {getPrice(userLocation, restaurant)}
           </Typography>
         </CardContent>
       </Box>
