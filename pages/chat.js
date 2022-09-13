@@ -71,9 +71,13 @@ export default function Chat(params) {
 
   // Efecto que se activa una vez para traer todos los mensajes del usuario logeado
   useEffect(() => {
-    setInterval(() => {
+    getMessageHistory().then((value) => setMessagesHistory(value));
+
+    const intervalID = setInterval(() => {
       getMessageHistory().then((value) => setMessagesHistory(value));
     }, 1000);
+
+    return () => clearInterval(intervalID);
   }, []);
 
   return (

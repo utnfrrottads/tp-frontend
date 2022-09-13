@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Message({ data, idUserLogged, isArchived }) {
+export default function Message({ data, idUserLogged }) {
   return (
     <li className="flex justify-end">
       <div
@@ -11,7 +11,7 @@ export default function Message({ data, idUserLogged, isArchived }) {
         <span className="block mr-3">{data.description}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill={isArchived ? "currentColor" : "none"}
+          fill={"none"}
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
