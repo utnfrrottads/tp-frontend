@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
-import type { GetServerSideProps, NextPage } from 'next'
+import React, { ReactElement } from 'react'
+import type { GetServerSideProps } from 'next'
 import { Box } from '@mui/system'
 import { Star } from '@mui/icons-material'
 import {
@@ -12,6 +12,7 @@ import {
   Grid
 } from '@mui/material'
 import styles from '../../styles/Home.module.css'
+import Layout from '../../components/Layout/Layout'
 
 const requestOptions = {
   method: 'GET',
@@ -20,7 +21,7 @@ const requestOptions = {
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
-const Restaurant: NextPage = ({ restaurant: data }: any) => {
+const Restaurant = ({ restaurant: data }: any) => {
   return (
     <div className={styles.container}>
       <Box sx={{ marginBottom: 7 }}>
@@ -112,6 +113,10 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       restaurant: data
     }
   }
+}
+
+Restaurant.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
 }
 
 export default Restaurant

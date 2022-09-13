@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 import type { GetServerSideProps } from 'next'
 import { Container, Grid, TextField, Box, Typography } from '@mui/material'
+
+import Link from 'next/link'
 import RestaurantCard from '../../components/RestaurantCard'
 import TagCard from '../../components/TagCard'
+import Layout from '../../components/Layout/Layout'
 
 const url = process.env.NEXT_PUBLIC_API_URL
 
@@ -48,12 +51,17 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
               .filter(restaurant =>
                 restaurant.name.toLowerCase().includes(filter)
               )
-              .map((restaurant: any) => (
+              .map((restaurant: any) => {
                 // eslint-disable-next-line no-underscore-dangle
-                <a href={`restaurant/${restaurant._id}`}>
-                  <RestaurantCard restaurant={restaurant} />
-                </a>
-              ))}
+                const ref = `restaurant/${restaurant._id}`
+                return (
+                  <Link href={ref} passHref>
+                    <a href={ref}>
+                      <RestaurantCard restaurant={restaurant} />
+                    </a>
+                  </Link>
+                )
+              })}
           </Grid>
           <Grid item>
             <Typography variant="h4">Categorias</Typography>
@@ -86,6 +94,10 @@ export const getServerSideProps: GetServerSideProps = async () => {
       tags: tagData
     }
   }
+}
+
+RestaurantHomePage.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
 }
 
 export default RestaurantHomePage
