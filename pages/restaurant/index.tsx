@@ -18,6 +18,15 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
   const [restaurants, setRestaurants] = useState(initialRestaurants)
   const [filter, setFilter] = useState('')
 
+  const location: any = {
+    street: 'Ayacucho',
+    number: '1234',
+    floor: 5,
+    apartment: 'A',
+    latitude: '-32.958153728617546',
+    longitude: '-60.629393413931275'
+  }
+
   const setRestaurantsByTag = async (tag: any) => {
     const requestOptions = {
       method: 'GET',
@@ -42,34 +51,38 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
         <Grid container spacing={4}>
           <Grid item xs={2}>
             <Box bgcolor="black" color="white" padding="2rem">
-              {' '}
               TODO: informacion del pedido actual
             </Box>
           </Grid>
           <Grid item xs={6}>
-            {restaurants
-              .filter(restaurant =>
-                restaurant.name.toLowerCase().includes(filter)
-              )
-              .map((restaurant: any) => {
-                // eslint-disable-next-line no-underscore-dangle
-                const ref = `restaurant/${restaurant._id}`
-                return (
-                  <Link href={ref} passHref>
-                    <a href={ref}>
-                      <RestaurantCard restaurant={restaurant} />
-                    </a>
-                  </Link>
+            {restaurants.length > 0 &&
+              restaurants
+                .filter(restaurant =>
+                  restaurant.name.toLowerCase().includes(filter)
                 )
-              })}
+                .map((restaurant: any) => {
+                  // eslint-disable-next-line no-underscore-dangle
+                  const ref = `restaurant/${restaurant._id}`
+                  return (
+                    <Link href={ref} passHref>
+                      <a href={ref}>
+                        <RestaurantCard
+                          restaurant={restaurant}
+                          userLocation={location}
+                        />
+                      </a>
+                    </Link>
+                  )
+                })}
           </Grid>
           <Grid item>
             <Typography variant="h4">Categorias</Typography>
-            {tags.map((tag: any) => (
-              <Box onClick={() => setRestaurantsByTag(tag)}>
-                <TagCard tag={tag} />
-              </Box>
-            ))}
+            {tags.length > 0 &&
+              tags.map((tag: any) => (
+                <Box onClick={() => setRestaurantsByTag(tag)}>
+                  <TagCard tag={tag} />
+                </Box>
+              ))}
           </Grid>
         </Grid>
       </Container>
