@@ -50,6 +50,7 @@ export default function Chat(params) {
   };
 
   // Efecto que ocurre cuando se clickea una Card Amigo o Desconocido y triggerea el cambio en el dashboard
+  // Tambien cuando se detecta un nuevo mensaje en la base
   useEffect(() => {
     const filterMsg = () => {
       const newData = messagesHistory.filter((msg) => {
@@ -60,7 +61,7 @@ export default function Chat(params) {
       setDataChatUser(newData);
     };
     filterMsg();
-  }, [friend]);
+  }, [friend, messagesHistory]);
 
   // Efecto que se activa cuando el menu cambia de un estado a otro
   useEffect(() => {

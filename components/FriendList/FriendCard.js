@@ -56,9 +56,9 @@ export default function FriendCard({
               </div>
             )}
           </div>
-          <span className="block ml-6 text-sm text-gray-600">
+          <p className="w-52 ml-6 text-sm truncate text-ellipsis text-gray-600">
             {lastMessage.description}
-          </span>
+          </p>
         </div>
       </a>
     </li>
