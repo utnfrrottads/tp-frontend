@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, Box, CardContent, Typography } from '@mui/material'
-import { getPrice } from '../utils/getPrice'
-import { getDeliveryTime } from '../utils/getDeliveryTime'
+import getDeliveryTime from '../utils/getDeliveryTime'
+import getPrice from '../utils/getPrice'
 
 interface Props {
   restaurant: any

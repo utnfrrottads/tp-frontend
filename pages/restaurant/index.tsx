@@ -49,11 +49,7 @@ const RestaurantHomePage = ({ initialRestaurants, tags }: Props) => {
       </Container>
       <Container maxWidth="xl" sx={{ marginY: '2em' }}>
         <Grid container spacing={4}>
-          <Grid item xs={2}>
-            <Box bgcolor="black" color="white" padding="2rem">
-              TODO: informacion del pedido actual
-            </Box>
-          </Grid>
+          <Grid item xs={2} />
           <Grid item xs={6}>
             {restaurants.length > 0 &&
               restaurants
