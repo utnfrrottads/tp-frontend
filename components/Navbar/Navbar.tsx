@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
-import styles from './Navbar.module.css';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import { VscTriangleDown } from 'react-icons/vsc';
-import { CgLogIn, CgLogOff } from 'react-icons/cg';
-import { MdDeliveryDining } from 'react-icons/md';
-import { IoSettings } from 'react-icons/io5';
 import Hamburger from 'hamburger-react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { HiHome } from 'react-icons/hi';
-import { BiSupport } from 'react-icons/bi';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -16,6 +10,19 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useRouter, NextRouter } from 'next/router';
+import ROUTES from './routes';
+import Box from '@mui/material/Box';
+
+
+
+/*-----------------------------------------------IMPORTANTE---------------------------------------------------------------*/
+
+                            /*PARA EDITAR LAS RUTAS, SUS ÍCONOS Y NOMBRES, EDITAR EL ARCHIVO*/
+                            /*routes.tsx QUE SE ENCUENTRA EN ESTE MISMO DIRECTORIO*/
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
 
 
 type Auth = {
@@ -27,15 +34,23 @@ type Auth = {
 
 };
 
+
+/*-------------------------------------------------------------NAVBAR COMPONENT--------------------------------------------*/
+
 interface NavbarProps {
     auth: Auth | null,
 };
 
+
+
+
 const Navbar = ({ auth }: NavbarProps) => {
+
 
     const isResponsive: boolean = useMediaQuery("(max-width:768px)");
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const router = useRouter();
 
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -43,10 +58,21 @@ const Navbar = ({ auth }: NavbarProps) => {
     };
 
 
-
     return (
         <>
-            <section className={styles.navbar}>
+            <Box component="nav" sx={{
+                background: "#F76776",
+                color: "#ffffff",
+                padding: "0.5rem 1rem",
+                display: "flex",
+                height: "64px",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "space-between",
+                position: "fixed",
+                top: 0,
+                left: 0,
+            }}>
 
 
 
@@ -58,19 +84,28 @@ const Navbar = ({ auth }: NavbarProps) => {
 
 
 
-                {!isResponsive && <div onClick={handleClick} className={styles.horizontal_avatar}>
+                {!isResponsive && <Box onClick={handleClick} sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    "&:hover": {
+                        cursor: "pointer"
+                    }
+                }}>
                     {auth && <Avatar sx={{ bgcolor: "#FFFFFF", color: "#F76776", width: 32, height: 32, fontSize: "0.8rem" }} alt="avatar">NA</Avatar>}
-                    {auth && <span>Nombre y Apellido</span>}
+                    {auth && <span style={{
+                        margin: "0 0.5rem",
+                        fontSize: "0.9rem"
+                    }}>Nombre y Apellido</span>}
                     <VscTriangleDown size={15} />
-                </div>}
+                </Box>}
 
 
 
-                {!isResponsive && <Dropdown auth={auth} anchorEl={anchorEl} setAnchorEl={setAnchorEl}/>}
+                {!isResponsive && <Dropdown router={router} auth={auth} anchorEl={anchorEl} setAnchorEl={setAnchorEl} />}
 
-            </section>
+            </Box>
 
-            {isResponsive && <ResponsiveDropdown menuIsOpen={menuIsOpen} auth={auth} />}
+            {isResponsive && <ResponsiveDropdown router={router} menuIsOpen={menuIsOpen} auth={auth} />}
         </>
     )
 };
@@ -80,114 +115,164 @@ const Navbar = ({ auth }: NavbarProps) => {
 interface DropdownProps {
     auth: Auth | null,
     anchorEl: null | HTMLElement,
-    setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>
+    setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>,
+    router: NextRouter,
 }
 
-const Dropdown = ({ auth, anchorEl, setAnchorEl }: DropdownProps) => {
+const Dropdown = ({ auth, anchorEl, setAnchorEl, router }: DropdownProps) => {
+
+    const getDropdownItems = () => {
+        return [...ROUTES.top, ...ROUTES.bottom].map((route, id) => {
+
+            if (route.authRequired) {
+
+                return auth && <DropdownItem redirectTo={route.redirectTo} router={router} key={id} text={route.text} icon={route.icon} setAnchorEl={setAnchorEl} />;
+
+            } else {
+
+                if (auth && route.noRenderWhetherAuth) return null;
+                return <DropdownItem redirectTo={route.redirectTo} router={router} key={id} text={route.text} icon={route.icon} setAnchorEl={setAnchorEl} />;
 
 
-    const handleClose = () => {
-        setAnchorEl(null);
+            };
+
+        })
     };
 
 
     return (
         <Menu
-            id="basic-menu"
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
-            onClose={handleClose}
-            MenuListProps={{
-                'aria-labelledby': 'basic-button',
-            }}
+            onClose={() => setAnchorEl(null)}
+
         >
-            <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleClose}>
-                <ListItemIcon>
-                    <HiHome color="#F76776" size={18} />
-                </ListItemIcon>
-                <ListItemText>Inicio</ListItemText>
-            </MenuItem>
-            <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleClose}>
-                <ListItemIcon>
-                    <MdDeliveryDining color="#F76776" size={18} />
-                </ListItemIcon>
-                <ListItemText>Mis Pedidos</ListItemText>
-            </MenuItem>
-            <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleClose}>
-                <ListItemIcon>
-                    <BiSupport color="#F76776" size={18} />
-                </ListItemIcon>
-                <ListItemText>Ayuda en Línea</ListItemText>
-            </MenuItem>
-            <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleClose}>
-                <ListItemIcon>
-                    <IoSettings color="#F76776" size={18} />
-                </ListItemIcon>
-                <ListItemText>Configuración</ListItemText>
-            </MenuItem>
-            <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleClose}>
-                <ListItemIcon>
-                    <CgLogOff color="#F76776" size={18} />
-                </ListItemIcon>
-                <ListItemText>{auth ? "Cerrar Sesión" : "Ingresar/Registrarse"}</ListItemText>
-            </MenuItem>
+            {getDropdownItems()}
         </Menu>
     )
 };
 
 
+
+
+interface DropdownItemProps {
+    text: string,
+    setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>,
+    icon?: React.ReactNode,
+    redirectTo: string | null,
+    router: NextRouter,
+
+}
+
+const DropdownItem = ({ text, icon, setAnchorEl, redirectTo, router }: DropdownItemProps) => {
+
+    const handleItemClick = () => {
+        if (redirectTo) router.push(redirectTo);
+        setAnchorEl(null);
+    };
+
+    return (
+        <MenuItem sx={{ color: "#F76776", "&:hover": { background: "#F5B4BB" } }} onClick={handleItemClick}>
+            <ListItemIcon>
+                {React.cloneElement(icon as React.ReactElement<any>, { color: "#F76776" })}
+            </ListItemIcon>
+            <ListItemText>{text}</ListItemText>
+        </MenuItem>
+    );
+};
+
 /*------------------------------------------------RESPONSIVE DROPDOWN COMPONENT FOR NAVBAR----------------------------------*/
+
 
 interface ResponsiveDropdownProps {
     menuIsOpen: boolean,
     auth: Auth | null,
+    router: NextRouter,
 }
 
-const ResponsiveDropdown = ({ menuIsOpen, auth }: ResponsiveDropdownProps) => {
+const ResponsiveDropdown = ({ menuIsOpen, auth, router }: ResponsiveDropdownProps) => {
+
+    const getResponsiveDropdownItems = (type: "top" | "bottom") => {
+
+        return ROUTES[type].map((route, id) => {
+
+            if (route.authRequired) {
+
+                return auth && <ResponsiveDropdownItem redirectTo={route.redirectTo} router={router} key={id} text={route.text} icon={route.icon} />;
+
+            } else {
+
+                if (auth && route.noRenderWhetherAuth) return null;
+                return <ResponsiveDropdownItem redirectTo={route.redirectTo} router={router} key={id} text={route.text} icon={route.icon} />;
+
+
+            };
+
+        })
+    };
+
+
     return (
-        <div style={{ height: menuIsOpen ? "calc(100% - 64px)" : "0" }} className={styles.menu}>
+        <Box sx={{
+            height: menuIsOpen ? "calc(100% - 64px)" : "0",
+            background: "#F76776",
+            position: "fixed",
+            top: "64px",
+            width: "100%",
+            overflow: "hidden",
+            transition: "height .3s ease-in-out",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            flexDirection: "column",
+        }}>
 
-            <div className={styles.menu_top}>
+            <Box sx={{ width: "100%" }}>
 
-                {auth && <div className={styles.vertical_avatar}>
+                {auth && <Box sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                }}>
                     <Avatar alt="avatar" sx={{ bgcolor: "#FFFFFF", color: "#F76776", width: 32, height: 32, fontSize: "0.8rem" }}>NA</Avatar>
-                    <h4>Nombre y Apellido</h4>
-                </div>}
+                    <h4 style={{
+                        marginTop: "0.3rem",
+                        color: "#FFFFFF",
+                    }}>Nombre y Apellido</h4>
+                </Box>}
 
                 <List sx={{ width: "100%" }}>
 
-                    <ResponsiveDropdownItem text="Inicio" icon={<HiHome color="#FFFFFF" size={25} />} />
-                    {auth && <ResponsiveDropdownItem text="Mis Pedidos" icon={<MdDeliveryDining color={"#FFFFFF"} size={20} />} />}
-                    <ResponsiveDropdownItem text="Ayuda en Línea" icon={<BiSupport color="#FFFFFF" size={20} />} />
+                    {getResponsiveDropdownItems("top")}
 
                 </List>
-            </div>
+            </Box>
 
 
-            <div className={styles.menu_bottom}>
-                {auth && <ResponsiveDropdownItem text={"Configuración"} icon={<IoSettings color={"#FFFFFF"} size={20} />} />}
-                <ResponsiveDropdownItem text={auth ? "Cerrar Sesión" : "Ingresar/Registrarse"} icon={auth ? <CgLogOff color="#FFFFFF" size={23} /> : <CgLogIn color="#FFFFFF" size={20} />} />
-            </div>
+            <Box sx={{ width: "100%" }}>
+                {getResponsiveDropdownItems("bottom")}
+            </Box>
 
-        </div>
+        </Box >
     )
 };
 
 
-/*-------------------------------------RESPONSIVE DROPDOWN ITEM COMPONENT FOR RESPONSIVE DROPDOWN--------------------------*/
 
 interface ResponsiveDropdownItemProps {
     text: string,
     icon?: React.ReactNode,
-    redirectTo?: string,
+    redirectTo: string | null,
+    router: NextRouter,
 };
 
-const ResponsiveDropdownItem = ({ text, icon, redirectTo }: ResponsiveDropdownItemProps) => {
+const ResponsiveDropdownItem = ({ text, icon, redirectTo, router }: ResponsiveDropdownItemProps) => {
     return (
-        <ListItem sx={{ color: "#FFFFFF", "&:hover": { background: "#F9A7B0" } }} disablePadding>
+        <ListItem onClick={() => { if (redirectTo) router.push(redirectTo) }} sx={{ color: "#FFFFFF", "&:hover": { background: "#F9A7B0" } }} disablePadding>
             <ListItemButton>
                 <ListItemIcon>
-                    {icon}
+                    {React.cloneElement(icon as React.ReactElement<any>, { color: "#FFFFFF" })}
                 </ListItemIcon>
                 <ListItemText primary={text} />
             </ListItemButton>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
-import styles from './Layout.module.css';
+import Box from '@mui/material/Box';
 
 interface LayoutProps {
     children: React.ReactNode
@@ -12,12 +12,17 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
 
-        <main className={styles.main}>
-            <Navbar auth={LOGGED_IN ? {user_id:"1",user_name:"Nombre y Apellido", user_email: "asdas@gmail.com", user_profile_photo: "s"} : null} />
-            <section className={styles.body}>
+        <Box component="main" sx={{ height: "calc(100vh - 64px)" }}>
+            <Navbar auth={LOGGED_IN ? { user_id: "1", user_name: "Nombre y Apellido", user_email: "asdas@gmail.com", user_profile_photo: "s" } : null} />
+            <Box component="section" sx={{
+                padding: "1rem",
+                marginTop: "64px",
+                height: "100%",
+                overflowY: "auto"
+            }}>
                 {children}
-            </section>
-        </main>
+            </Box>
+        </Box >
 
     )
 };
