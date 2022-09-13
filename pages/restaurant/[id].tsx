@@ -3,8 +3,9 @@
 import React, { ReactElement } from 'react'
 import type { GetServerSideProps } from 'next'
 import { Box } from '@mui/system'
-import { Star } from '@mui/icons-material'
+import { InfoOutlined, Star, Store } from '@mui/icons-material'
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -54,7 +55,17 @@ const Restaurant = ({ restaurant: data }: any) => {
       </Box>
 
       <p>{data.description}</p>
-      <p>{data.location}</p>
+
+      <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+        <Store style={{ opacity: 0.55 }} />
+        {`${data.location.street} ${data.location.number}`}
+        <Button
+          type="button"
+          onClick={() => window.alert(JSON.stringify(data.location, null, 2))}
+        >
+          <InfoOutlined style={{ opacity: 0.55 }} />
+        </Button>
+      </Box>
 
       {data.tags
         ? data.tags.map((m: any) => (
