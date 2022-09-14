@@ -1,72 +1,36 @@
-import React from 'react';
-import { NextPage } from 'next';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import Layout from '../components/Layout/Layout';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import withAuth from '../utils/withAuth';
+import React from 'react'
 
-const url = process.env.NEXT_PUBLIC_API_URL
+import { Box, Card, Typography } from '@mui/material'
 
-const Login: NextPage = ({ auth }: any) => {
-  const router = useRouter();
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('Ingrese el email'),
-      password: Yup.string().required('Ingrese la contraseña'),
-    }),
-    onSubmit: async values => {
-      try {
-        let user: any = await axios.post(`${url}/users/login`, values, { withCredentials: true });
-        user = user.data;
-        router.push("/");
+import withAuth from '../utils/withAuth'
+import LoginForm from '../components/login/LoginForm'
 
-      }
-      catch (err) {
-        formik.errors.email = "Email o Contraseña incorrectos"
-      };
-    },
-  });
+const LoginPage = () => {
   return (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      sx={{
+        backgroundImage: `url('/db8907208b387dedf183982486f262f8.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      <Card>
+        <Box sx={{ textAlign: 'center', mt: '30px' }}>
+          <h1>Bienvenido</h1>
+          <Typography fontWeight="light">Inicia sesión en tu cuenta</Typography>
+        </Box>
+        <Box sx={{ padding: '20px', margin: '20px', width: '450px' }}>
+          <LoginForm />
+        </Box>
+      </Card>
+    </Box>
+  )
+}
 
-    <Layout auth={auth}>
-      <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
-        ) : null}
+export const getServerSideProps = withAuth(null, false)
 
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
-        ) : null}
-        <button type="submit">Submit</button>
-      </form>
-    </Layout>
-  );
-};
-
-export const getServerSideProps = withAuth(null, false);
-
-export default Login;
+export default LoginPage
