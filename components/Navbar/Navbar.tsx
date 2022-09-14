@@ -21,17 +21,12 @@ import ROUTES from './routes'
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-type Auth = {
-  user_id: string
-  user_name: string
-  user_email: string
-  user_profile_photo: string
-}
+
 
 /* -------------------------------------------------------------NAVBAR COMPONENT--------------------------------------------*/
 
 interface NavbarProps {
-  auth: Auth | null
+  auth: Auth | null,
 }
 
 const Navbar = ({ auth }: NavbarProps) => {
@@ -135,7 +130,7 @@ const Navbar = ({ auth }: NavbarProps) => {
 /* ------------------------------------------------DROPDOWN COMPONENT FOR NAVBAR---------------------------------------------*/
 
 interface DropdownProps {
-  auth: Auth | null
+  auth: Auth | null,
   anchorEl: null | HTMLElement
   setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>
   router: NextRouter
@@ -143,11 +138,12 @@ interface DropdownProps {
 
 const Dropdown = ({ auth, anchorEl, setAnchorEl, router }: DropdownProps) => {
   const getDropdownItems = () => {
-    return [...ROUTES.top, ...ROUTES.bottom].map(route => {
+    return [...ROUTES.top, ...ROUTES.bottom].map((route) => {
       if (route.authRequired) {
         return (
           auth && (
             <DropdownItem
+              key={route.text}
               redirectTo={route.redirectTo}
               router={router}
               text={route.text}
@@ -161,6 +157,7 @@ const Dropdown = ({ auth, anchorEl, setAnchorEl, router }: DropdownProps) => {
       if (auth && route.noRenderWhetherAuth) return null
       return (
         <DropdownItem
+          key={route.text}
           redirectTo={route.redirectTo}
           router={router}
           text={route.text}
@@ -221,7 +218,7 @@ const DropdownItem = ({
 
 interface ResponsiveDropdownProps {
   menuIsOpen: boolean
-  auth: Auth | null
+  auth: Auth | null,
   router: NextRouter
 }
 
@@ -231,11 +228,12 @@ const ResponsiveDropdown = ({
   router
 }: ResponsiveDropdownProps) => {
   const getResponsiveDropdownItems = (type: 'top' | 'bottom') => {
-    return ROUTES[type].map(route => {
+    return ROUTES[type].map((route) => {
       if (route.authRequired) {
         return (
           auth && (
             <ResponsiveDropdownItem
+              key={route.text}
               redirectTo={route.redirectTo}
               router={router}
               text={route.text}
@@ -248,6 +246,7 @@ const ResponsiveDropdown = ({
       if (auth && route.noRenderWhetherAuth) return null
       return (
         <ResponsiveDropdownItem
+          key={route.text}
           redirectTo={route.redirectTo}
           router={router}
           text={route.text}
@@ -264,6 +263,7 @@ const ResponsiveDropdown = ({
         background: '#F76776',
         position: 'fixed',
         top: '64px',
+        zIndex: 999,
         width: '100%',
         overflow: 'hidden',
         transition: 'height .3s ease-in-out',

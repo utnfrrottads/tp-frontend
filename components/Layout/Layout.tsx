@@ -3,25 +3,16 @@ import Box from '@mui/material/Box'
 import Navbar from '../Navbar/Navbar'
 
 interface LayoutProps {
+  auth: Auth | null,
   children: React.ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
-  const LOGGED_IN = true // Variable solo para testing, eliminar al terminar de usarla
+const Layout = ({ auth, children }: LayoutProps) => {
 
   return (
     <Box component="main" sx={{ height: 'calc(100vh - 64px)' }}>
       <Navbar
-        auth={
-          LOGGED_IN
-            ? {
-                user_id: '1',
-                user_name: 'Nombre y Apellido',
-                user_email: 'asdas@gmail.com',
-                user_profile_photo: 's'
-              }
-            : null
-        }
+        auth={auth}
       />
       <Box
         component="section"
