@@ -7,12 +7,10 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import withAuth from '../utils/withAuth';
 
+const url = process.env.NEXT_PUBLIC_API_URL
+
 const Login: NextPage = ({ auth }: any) => {
-
-
   const router = useRouter();
-
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -24,8 +22,7 @@ const Login: NextPage = ({ auth }: any) => {
     }),
     onSubmit: async values => {
       try {
-
-        let user: any = await axios.post(`http://localhost:3700/api/users/login`, values, { withCredentials: true });
+        let user: any = await axios.post(`${url}/users/login`, values, { withCredentials: true });
         user = user.data;
         router.push("/");
 
@@ -64,9 +61,6 @@ const Login: NextPage = ({ auth }: any) => {
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
         ) : null}
-
-
-
         <button type="submit">Submit</button>
       </form>
     </Layout>
@@ -74,6 +68,5 @@ const Login: NextPage = ({ auth }: any) => {
 };
 
 export const getServerSideProps = withAuth(null, false);
-
 
 export default Login;
