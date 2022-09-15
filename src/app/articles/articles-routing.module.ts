@@ -31,7 +31,7 @@ const routes: Routes = [
         },
         {
           label: 'Detail: {{articleCode}}',
-          url: '/articles/:articleId',
+          url: '/article/:articleId',
         },
       ],
     },
@@ -49,6 +49,23 @@ const routes: Routes = [
         {
           label: 'Create',
           url: '/articles/create',
+        },
+      ],
+    },
+  },
+  {
+    path: 'article/edit/:articleId',
+    component: ArticleFormComponent,
+    data: {
+      title: 'Edit Article {{articleCode}}',
+      breadcrumb: [
+        {
+          label: 'Article',
+          url: '/article',
+        },
+        {
+          label: 'Edit Article: {{articleCode}}',
+          url: '/article/edit/:articleId',
         },
       ],
     },

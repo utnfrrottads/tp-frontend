@@ -22,6 +22,11 @@ export class HttpService {
     return this.http.get<IArticle[]>(url);
   }
 
+  getArticlesByDescription(description: string): Observable<IArticle[]> {
+    const url = `${this.baseUrl}/articles/?description=${encodeURIComponent(description)}`;
+    return this.http.get<IArticle[]>(url);
+  }
+
   getArticleById(articleId: number): Observable<IArticle> {
     const url = `${this.baseUrl}/articles/${articleId}`;
     return this.http.get<IArticle>(url);
@@ -30,6 +35,11 @@ export class HttpService {
   createArticle(article: IArticle): Observable<IArticle> {
     const url =  `${this.baseUrl}/articles`;
     return this.http.post<IArticle>(url, article);
+  }
+
+  updateArticle(article: IArticle): Observable<IArticle> {
+    const url =  `${this.baseUrl}/articles/${article._id}`;
+    return this.http.patch<IArticle>(url, article);
   }
 
   getCategories(): Observable<ICategory[]> {

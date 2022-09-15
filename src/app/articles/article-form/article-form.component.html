@@ -1,5 +1,5 @@
 <div class="container bg-light">
-  <h1>Create new article</h1>
+  <h1>{{componentMode}} article</h1>
   <form [formGroup]="articleForm" (ngSubmit)="save()">
     <div class="form-group">
       <label for="inputCode">Code</label>
@@ -16,19 +16,25 @@
       <label for="selectCategory">Category</label>
       <select id="selectCategory" class="custom-select" (change)="changeCategory($event)">
         <option selected disabled [value]="-1">Choose a category</option>
-        <option *ngFor="let category of categories; let i = index" [value]="i">{{category.name}}</option>
+        <option
+          *ngFor="let category of categories; let i = index"
+          [value]="i"
+          [selected]="articleForm.value.category.name === category.name"
+        >
+          {{category.name}}
+        </option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="inputImage">Image</label>
       <input id="inputImage" class="form-control-file" type="file" (change)="onImageChanges($event)">
-      <img [src]="imageBase64" class="image">
+      <img [src]="imageBase64 ? imageBase64 : article.urlImage" class="image">
     </div>
 
     <div class="form-group">
       <label for="inputAmountToOrder">Amount to order</label>
-      <input id="inputAmountToOrder" class="form-control" formControlName="AmountToOrder" type="text">
+      <input id="inputAmountToOrder" class="form-control" formControlName="amountToOrder" type="text">
     </div>
 
     <div class="form-group">
@@ -49,11 +55,17 @@
     <div class="form-group" formArrayName="providers">
       <label for="selectProviders">Providers</label>
       <select  multiple id="selectProviders" class="custom-select" (change)="changeProviders($event)">
-        <option selected disabled [value]="-1">Choose one or more providers</option>
-        <option *ngFor="let provider of providers; let i = index" [value]="i">{{provider.businessName}}</option>
+        <option disabled [value]="-1">Choose one or more providers</option>
+        <option
+          *ngFor="let provider of providers; let i = index"
+          [value]="i"
+          [selected]="isSelectedProvider(provider)"
+        >
+          {{provider.businessName}}
+        </option>
       </select>
     </div>
 
-    <button class="btn btn-primary" [disabled]="!articleForm.valid" type="submit">Create Article</button>
+    <button class="btn btn-primary" [disabled]="!articleForm.valid" type="submit">{{componentMode}} Article</button>
   </form>
 </div>
