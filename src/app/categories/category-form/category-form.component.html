@@ -1,0 +1,27 @@
+<div class="container bg-light">
+  <h1>Edit Category</h1>
+  <form [formGroup]='categoryForm' (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="inputName">Name</label>
+      <input id="inputName" class="form-control" formControlName="name" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="inputDescription">Description</label>
+      <input id="inputDescription" class="form-control" formControlName="description" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="inputImage">Image</label>
+      <input id="inputImage" class="form-control-file" type="file" (change)="onImageChanges($event)">
+      <img [src]="imageBase64" class="image">
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!categoryForm.valid" type="submit">Save Category</button>
+  </form>
+
+  <app-modal-dialog [modalMsg]="modalMsg" (retry)="save()">
+  </app-modal-dialog>
+
+
+</div>

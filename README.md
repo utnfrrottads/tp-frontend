@@ -1,4 +1,5 @@
 # TP Frontend 2022
+Link a repositorio anterior: https://gitlab.com/OscarDorronzoro/tp-frontend-2019
 
 ## 1 - Enunciado
 ### 1.1 - Desarrollo

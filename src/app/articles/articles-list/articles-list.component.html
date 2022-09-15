@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <app-toggle-grid (viewChanges)="toggleGridView($event)"></app-toggle-grid>
+
+  <div class="row">
+    <div *ngFor='let article of articles'
+      class="card mb-2 mx-1 rounded-right hover-zoom hover-shadow"
+      [ngClass]="{
+        'col-5': gridView,
+        'col-sm-5': gridView,
+        'col-md-4': gridView,
+        'col-lg-4': gridView,
+        'col-xl-3': gridView,
+        'col-12': !gridView
+      }">
+      <div class="row">
+        <div class="col-12 bg-dark"
+          [ngClass]="{
+            'col-sm-3': !gridView,
+            'col-md-3': !gridView,
+            'col-lg-2': !gridView,
+            'col-xl-2': !gridView
+          }">
+          <img class="image" [src]="article.urlImage" [alt]="article.description">
+        </div>
+        <div class="col-12"
+          [ngClass]="{
+            'col-sm-9': !gridView,
+            'col-md-9': !gridView,
+            'col-lg-10': !gridView,
+            'col-xl-10': !gridView
+          }">
+          <div class="card-body row">
+            <div class="col-md-10">
+              <h5 class="card-title" [routerLink]="'/articles/' + article._id">{{article.description}}</h5>
+              <p class="card-text">{{article.category.description}}</p>
+              <p class="card-text"><small class="text-success">Free shipping</small></p>
+            </div>
+            <div class="col-md-2">
+              <p>$ {{article.price.value}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

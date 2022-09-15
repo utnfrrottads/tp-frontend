@@ -1,0 +1,11 @@
+<div class="row my-2">
+  <div class="col-2 ml-auto mr-3">
+    <button (click)="toggleGridView()" class="btn btn-primary" type="button"
+      data-toggle="tooltip" data-placement="left" data-trigger="hover focus manual"
+      title="Grid/list view">
+      <i class="fa fas"
+        [ngClass]="gridView === true ? 'fa-th-list' : 'fa-th'">
+      </i>
+    </button>
+  </div>
+</div>

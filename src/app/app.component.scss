@@ -1,0 +1,32 @@
+.pl-6{
+  padding-left: 5%;
+}
+
+.pr-6 {
+  padding-right: 5%;
+}
+
+.ml-nav-25{
+  margin-left: calc(25% - 170px);
+}
+
+.ml-25{
+  margin-left: 25%;
+}
+
+.bg-header{
+  background-color: dodgerblue;
+}
+
+.bg-addon{
+  background-color: white;
+}
+
+.bg-addon:hover{
+  background-color: #6c757d;
+}
+
+.form-header-border:focus{
+  border-color:black;
+  box-shadow: 0px 0px 2px darkgray;
+}
