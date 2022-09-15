@@ -18,9 +18,9 @@ export default function FriendCard({
   const minDiff = Math.floor((dateNow - date) / (1000 * 60));
 
   return (
-    <li className="h-24 w-full px-2 rounded-l bg-white hover:bg-gray-100 focus:outline-none cursor-pointer transition duration-150 ease-in-out">
+    <li className="h-24 w-full px-2 rounded-lg bg-transparent hover:bg-neutral-700 focus:outline-none cursor-pointer transition duration-150 ease-in-out">
       <a
-        className="h-full flex items-center text-sm  border-gray-300  "
+        className="h-full flex items-center text-sm text-white border-gray-300"
         onClick={() => handleChat(data._id)}
       >
         <Image
@@ -33,11 +33,11 @@ export default function FriendCard({
         />
         <div className="w-full pb-2">
           <div className="flex justify-between items-center">
-            <span className="block ml-6 font-semibold text-gray-600">
-              {data.name}
+            <span className="block ml-6 font-semibold ">
+              {isFriend ? data.name : `Unknown user: ${data.name}`}
             </span>
             {isFriend ? (
-              <span className="block ml-2 text-sm text-gray-600">
+              <span className="block ml-2 text-sm ">
                 {minDiff <= 60
                   ? `${minDiff} min`
                   : hoursDiff <= 24
@@ -56,7 +56,7 @@ export default function FriendCard({
               </div>
             )}
           </div>
-          <p className="w-52 ml-6 text-sm truncate text-ellipsis text-gray-600">
+          <p className="w-52 ml-6 text-sm truncate text-ellipsis ">
             {lastMessage.description}
           </p>
         </div>

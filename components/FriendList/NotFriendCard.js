@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function NotFriendCard({ user, handleAddFriendClick }) {
   return (
-    <li className="h-24 w-full px-2 rounded-l bg-white hover:bg-gray-100 focus:outline-none cursor-pointer transition duration-150 ease-in-out">
-      <a className="h-full flex items-center text-sm  border-gray-300  ">
+    <li className="h-24 w-full px-2 rounded-l bg-transparent hover:bg-neutral-700 focus:outline-none cursor-pointer transition duration-150 ease-in-out">
+      <a className="h-full flex items-center text-sm text-white">
         <div className="w-full h-full pb-2 px-4 flex items-center justify-between">
           <Image
             src={user.profileImage}
@@ -12,9 +12,7 @@ export default function NotFriendCard({ user, handleAddFriendClick }) {
             width={64}
             className="rounded-full"
           />
-          <span className="block ml-2 font-semibold text-gray-600">
-            {user.name}
-          </span>
+          <span className="block ml-2 font-semibold">{user.name}</span>
           {/* <span className="block ml-2 w-10 text-sm text-gray-600 truncate">
             {user.description}
           </span> */}

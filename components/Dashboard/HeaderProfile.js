@@ -10,7 +10,7 @@ export default function HeaderProfile({ friend }) {
   }, [friend]);
 
   return (
-    <div className="relative flex items-center h-16 border-b border-gray-300">
+    <div className="relative flex items-center h-16 px-4 border-b border-l text-white bg-neutral-800 border-black">
       <Image
         className="object-cover rounded-full"
         height="40px"
@@ -22,7 +22,7 @@ export default function HeaderProfile({ friend }) {
         }}
         onLoa
       />
-      <span className="block ml-2 font-bold text-gray-600">{friend.name}</span>
+      <span className="block ml-2 font-bold">{friend.name}</span>
 
       {/* <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span> */}
     </div>
