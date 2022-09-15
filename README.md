@@ -5,6 +5,13 @@
 3. Asegurarse de estar corriendo el backend en http://localhost:3700
 4. Correr `yarn dev`
 
+Año de cursado 2022
+Integrantes: 
+1. Agustin Delmonti
+2. Alan Holtz
+3. Alejandro Navarini
+4. German Tano
+
 ## 1 - Enunciado
 
 ### 1.1 - Desarrollo
