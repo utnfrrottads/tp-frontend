@@ -3,7 +3,14 @@ import { idUserLogged } from "../../utils/api";
 
 export default function ContainerMessages({ messages, archivedMessages }) {
   return (
-    <div className="h-5/6 w-full px-6 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200">
+    <div
+      className="h-5/6 w-full px-6 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200"
+      style={{
+        backgroundImage: `url("/chat.png")`,
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <ul className="flex flex-col space-y-4 scrolling-touch">
         {messages.map((m, i) => {
           if (m !== undefined) {

@@ -24,7 +24,7 @@ export default function Dashboard({
   const messagesToShow = filterMessages(messages);
 
   return (
-    <div className="h-full w-full relative flex flex-col justify-between px-4 py-4">
+    <div className="h-full w-full relative flex flex-col justify-between">
       <HeaderProfile friend={friend} />
       <ContainerMessages
         messages={messagesToShow}
@@ -36,7 +36,7 @@ export default function Dashboard({
         message={messageToSend}
       />
       <a
-        className="h-8 w-8 rounded-full hover:bg-gray-200 cursor-pointer absolute top-8 right-6"
+        className="h-8 w-8 rounded-full hover:bg-neutral-700 text-white cursor-pointer absolute top-5 right-6"
         onClick={() => exitChat()}
       >
         <svg

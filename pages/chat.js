@@ -29,6 +29,12 @@ export default function Chat(params) {
   const [friendsInList, setFriendsInList] = useState([]);
   const [messagesHistory, setMessagesHistory] = useState([]);
   const [archivedMessages, setArchivedMessages] = useState([]);
+  const [dimensions, setDimensions] = useState({
+    heigth: null,
+    width: null,
+  });
+  // Se podria guardar la opcion del usuario en el local storage
+  const [darkMode, setDarkMode] = useState(true);
 
   const exitChat = () => setIsOpen(false);
 
@@ -47,6 +53,11 @@ export default function Chat(params) {
 
   const handleClickHeader = (event) => {
     setStatusMenu(event.target.getAttribute("name"));
+  };
+
+  const handleClickDarkButton = (event) => {
+    event.preventDefault();
+    setDarkMode(!darkMode);
   };
 
   // Efecto que ocurre cuando se clickea una Card Amigo o Desconocido y triggerea el cambio en el dashboard
@@ -72,18 +83,30 @@ export default function Chat(params) {
 
   // Efecto que se activa una vez para traer todos los mensajes del usuario logeado
   useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        width: window.innerWidth,
+      });
+    }
+    window.addEventListener("resize", handleResize);
     getMessageHistory().then((value) => setMessagesHistory(value));
-
     const intervalID = setInterval(() => {
       getMessageHistory().then((value) => setMessagesHistory(value));
     }, 1000);
 
-    return () => clearInterval(intervalID);
+    return () => {
+      clearInterval(intervalID);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <div className="h-screen w-screen flex flex-row overflow-y-hidden">
-      <div className="h-full w-1/4 bg-slate-200 py-4">
+    <div className="h-screen w-screen flex flex-row overflow-hidden">
+      <div
+        className={`h-full xl:w-1/3 sm:w-1/2 sm:block  ${
+          !isOpen && dimensions.width <= 425 ? "w-full" : "hidden"
+        } bg-neutral-800 `}
+      >
         <Header
           search={handleChangeSearchBar}
           searchFriend={searchFriend}
@@ -109,10 +132,12 @@ export default function Chat(params) {
             usersNotInFriendList={usersNotInFriendList}
           />
         )}
-        <hr />
-        <Footer />
       </div>
-      <div className="h-full w-3/4">
+      <div
+        className={`h-full sm:1/2 xl:w-2/3 sm:block ${
+          isOpen && dimensions.width <= 425 ? "block w-full" : "hidden"
+        }`}
+      >
         {isOpen ? (
           <Dashboard
             messages={dataChatUser}

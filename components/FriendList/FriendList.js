@@ -36,9 +36,11 @@ export default function FriendList({
   });
 
   return (
-    <div className="container h-full py-4 accordion-item border ">
-      <h2 className="p-4 font-semibold">Friends</h2>
-      <ul className="h-1/2 grid grid-flow-row auto-rows-max gap-4 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200">
+    <div className="container h-full py-4  text-white ">
+      <h2 className="py-2 px-4 font-semibold border-b border-b-gray-600 mb-2">
+        Chats
+      </h2>
+      <ul className="h-5/6 grid grid-flow-row auto-rows-max gap-2 px-4 overflow-y-auto scrollbar-thin hover:scrollbar-thumb-neutral-500  scrollbar-track-neutral-800 ">
         {filteredData.map((friend, index) => {
           return (
             <FriendCard
@@ -52,26 +54,27 @@ export default function FriendList({
             />
           );
         })}
+        {usersNotInList.map((user, index) => {
+          return (
+            <FriendCard
+              handleChat={handleChat}
+              data={user}
+              isFriend={false}
+              lastMessage={{ date: new Date() }}
+              key={index}
+            />
+          );
+        })}
       </ul>
 
-      <details className="p-4 rounded-lg overflow-y-auto h-auto w-full">
+      {/* <details className="p-4 rounded-lg overflow-y-auto h-auto w-full">
         <summary className="font-semibold cursor-pointer">
           Unknows Users
         </summary>
         <ul className="h-auto grid grid-flow-row auto-rows-max gap-4 px-4 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200">
-          {usersNotInList.map((user, index) => {
-            return (
-              <FriendCard
-                handleChat={handleChat}
-                data={user}
-                isFriend={false}
-                lastMessage={{ date: new Date() }}
-                key={index}
-              />
-            );
-          })}
+         
         </ul>
-      </details>
+      </details> */}
     </div>
   );
 }

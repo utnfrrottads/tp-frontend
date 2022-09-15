@@ -14,28 +14,24 @@ export default function ArchivedList({
   const userData = allUsers.find((user) => {});
 
   return (
-    <ul className="h-1/2 grid grid-flow-row auto-rows-max gap-4 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200 py-2">
-      {data.map((msg, i) => {
-        return (
-          <li
-            key={i}
-            className="h-24 w-full px-2 rounded-l bg-white hover:bg-gray-100 focus:outline-none cursor-pointer transition duration-150 ease-in-out"
-          >
-            <a className="h-full flex items-center text-sm  border-gray-300">
-              <div>
-                {/* <Image
-                  height={24}
-                  width={24}
-                  src={allUsers[i].profileImage}
-                  alt={"Profile img"}
-                /> */}
-                {/* <span>{allUsers[i].name}</span> */}
-              </div>
-              <span>{msg.description}</span>
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="p-4">
+      <h2 className=" text-center py-2 px-4 font-semibold border-b border-b-gray-600 text-gray-300 mb-2">
+        Archived Messages
+      </h2>
+      <ul className="h-1/2 grid grid-flow-row auto-rows-max gap-4 text-white px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200 py-2">
+        {data.map((msg, i) => {
+          return (
+            <li
+              key={i}
+              className="h-24 w-full px-2 rounded-l bg-transparent hover:bg-neutral-700 focus:outline-none cursor-pointer transition duration-150 ease-in-out"
+            >
+              <a className="h-full flex items-center text-sm md:text-xl">
+                <span>{msg.description}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

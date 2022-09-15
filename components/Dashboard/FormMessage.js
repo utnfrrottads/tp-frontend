@@ -6,7 +6,7 @@ export default function FormMessage({
 }) {
   return (
     <div className="h-auto w-full">
-      <form className="flex items-center h-auto justify-between w-full border-t-2 p-2 border-gray-300 relative">
+      <form className="flex items-center h-auto justify-between w-full border-t-2 p-2 bg-neutral-800 border-black relative">
         <input
           type="text"
           maxLength={500}
@@ -14,20 +14,20 @@ export default function FormMessage({
           value={message}
           onChange={(e) => handleChangeInput(e)}
           placeholder="Write your message!"
-          className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-12 bg-gray-200 rounded-md py-3 mr-2"
+          className="w-full min-w-32 focus:outline-none focus:placeholder-gray-300 text-white placeholder-gray-400 pl-12 bg-neutral-700 rounded-md py-3 mr-2"
         />
 
         <span className="absolute inset-y-0 flex items-center">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+            className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-blue-600 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-6 w-6 text-gray-600"
+              className="h-6 w-6 text-gray-200"
             >
               <path
                 strokeLinecap="round"
@@ -38,17 +38,17 @@ export default function FormMessage({
             </svg>
           </button>
         </span>
-        <div className="absolute right-32 items-center inset-y-0 hidden sm:flex">
+        <div className="absolute md:right-32 items-center inset-y-0 hidden md:flex">
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+            className="inline-flex items-center justify-center rounded-full h-5 w-5 lg:h-10 lg:w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-blue-600 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-6 w-6 text-gray-600"
+              className="h-6 w-6 text-gray-200"
             >
               <path
                 strokeLinecap="round"
@@ -60,14 +60,14 @@ export default function FormMessage({
           </button>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+            className="inline-flex items-center justify-center rounded-full h-5 w-5 lg:h-10 lg:w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-blue-600 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-6 w-6 text-gray-600"
+              className="h-6 w-6 text-gray-200"
             >
               <path
                 strokeLinecap="round"
@@ -85,14 +85,14 @@ export default function FormMessage({
           </button>
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+            className="inline-flex items-center justify-center rounded-full h-5 w-5 lg:h-10 lg:w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-blue-600 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-6 w-6 text-gray-600"
+              className="h-6 w-6 text-gray-200"
             >
               <path
                 strokeLinecap="round"
@@ -106,7 +106,7 @@ export default function FormMessage({
 
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
+          className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-600 hover:bg-blue-500 focus:outline-none"
           onClick={(e) => handleSubmit(e)}
         >
           <span className="font-bold">Send</span>

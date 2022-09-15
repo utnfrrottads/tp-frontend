@@ -6,7 +6,7 @@ export default function Header({
 }) {
   return (
     <div className="h-32 w-full flex flex-col items-center justify-center py-4 ">
-      <div className="h-16 text-gray-600 w-5/6">
+      <div className="h-16 text-white w-5/6">
         <div className="relative inset-y-0 left-0">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <svg
@@ -23,7 +23,7 @@ export default function Header({
           </span>
           <input
             type="text"
-            className="w-full py-2 pl-10 bg-gray-100 rounded outline-none"
+            className="w-full py-2 pl-10 bg-black rounded outline-none"
             name="search"
             placeholder="Search"
             value={searchFriend}
@@ -31,7 +31,7 @@ export default function Header({
           />
         </div>
       </div>
-      <div className="flex flex-row">
+      <div className="flex flex-row text-white">
         <a
           className={`inline-block font-semibold cursor-pointer border-b-2 border-transparent transition-all duration-200 p-4 rounded-t-lg ${
             status === "Chats"
