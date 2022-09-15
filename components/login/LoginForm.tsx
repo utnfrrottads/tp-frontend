@@ -61,7 +61,7 @@ const LoginForm = () => {
                 as={TextField}
                 fullWidth
                 value={values.email}
-                error={touched.email && errors.email}
+                error={Boolean(touched.email && errors.email)}
                 helperText={touched.email && errors.email}
                 margin="dense"
                 InputProps={{
@@ -81,7 +81,7 @@ const LoginForm = () => {
                 as={TextField}
                 fullWidth
                 value={values.password}
-                error={touched.password && errors.password}
+                error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
                 margin="dense"
                 InputProps={{

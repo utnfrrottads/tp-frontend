@@ -57,7 +57,7 @@ const Navbar = ({ auth }: NavbarProps) => {
           left: 0
         }}
       >
-        <h1>LOGO</h1>
+        <h1 style={{cursor:"pointer"}} onClick={()=>router.push("/")}>LOGO</h1>
 
         {isResponsive && (
           <Hamburger
@@ -89,7 +89,7 @@ const Navbar = ({ auth }: NavbarProps) => {
                 }}
                 alt="avatar"
               >
-                NA
+                {`${auth.name[0]}${auth.surname[0]}`}
               </Avatar>
             )}
             {auth && (
@@ -99,7 +99,7 @@ const Navbar = ({ auth }: NavbarProps) => {
                   fontSize: '0.9rem'
                 }}
               >
-                Nombre y Apellido
+                {auth.name} {auth.surname}
               </span>
             )}
             <VscTriangleDown size={15} />
@@ -293,7 +293,7 @@ const ResponsiveDropdown = ({
                 fontSize: '0.8rem'
               }}
             >
-              NA
+              {`${auth.name[0]}${auth.surname[0]}`}
             </Avatar>
             <h4
               style={{
@@ -301,7 +301,7 @@ const ResponsiveDropdown = ({
                 color: '#FFFFFF'
               }}
             >
-              Nombre y Apellido
+              {auth.name} {auth.surname}
             </h4>
           </Box>
         )}

@@ -1,11 +1,12 @@
 import React from 'react'
-
+import type { NextPage, NextPageContext } from 'next'
 import { Box, Card, Typography } from '@mui/material'
-
 import withAuth from '../utils/withAuth'
 import LoginForm from '../components/login/LoginForm'
 
-const LoginPage = () => {
+const LoginPage: NextPage<{ auth: Auth }> = ({ auth }) => {
+
+
   return (
     <Box
       display="flex"
@@ -31,6 +32,21 @@ const LoginPage = () => {
   )
 }
 
-export const getServerSideProps = withAuth(null, false)
+export const getServerSideProps = withAuth(async (auth: Auth | null, context: NextPageContext) => {
 
-export default LoginPage
+  if (auth) {
+
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  };
+
+  return { props: { auth } }
+
+
+}, false);
+
+export default LoginPage;
