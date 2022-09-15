@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import type { NextPageContext } from 'next'
 import { Container, Grid, TextField, Box, Typography } from '@mui/material'
-import withAuth from '../../utils/withAuth'
 import Link from 'next/link'
+import withAuth from '../../utils/withAuth'
 import RestaurantCard from '../../components/RestaurantCard'
 import TagCard from '../../components/TagCard'
 import Layout from '../../components/Layout/Layout'
@@ -11,8 +10,8 @@ const url = process.env.NEXT_PUBLIC_API_URL
 
 interface Props {
   initialRestaurants: any[]
-  tags: any[],
-  auth: Auth,
+  tags: any[]
+  auth: Auth
 }
 
 const RestaurantHomePage = ({ initialRestaurants, tags, auth }: Props) => {
@@ -34,7 +33,7 @@ const RestaurantHomePage = ({ initialRestaurants, tags, auth }: Props) => {
       headers: { 'Content-Type': 'application/json' }
     }
     const data = await // eslint-disable-next-line no-underscore-dangle
-      (await fetch(`${url}/restaurants/?tag=${tag._id}`, requestOptions)).json()
+    (await fetch(`${url}/restaurants/?tag=${tag._id}`, requestOptions)).json()
     setRestaurants(data)
   }
   return (
@@ -89,9 +88,7 @@ const RestaurantHomePage = ({ initialRestaurants, tags, auth }: Props) => {
   )
 }
 
-export const getServerSideProps = withAuth(async (auth: Auth | null, context: NextPageContext) => {
-
-
+export const getServerSideProps = withAuth(async (auth: Auth | null) => {
   const requestOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
@@ -106,12 +103,9 @@ export const getServerSideProps = withAuth(async (auth: Auth | null, context: Ne
     props: {
       initialRestaurants: restaurantData,
       tags: tagData,
-      auth,
+      auth
     }
   }
-
-
-}, false);
-
+}, false)
 
 export default RestaurantHomePage

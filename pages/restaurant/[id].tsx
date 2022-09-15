@@ -16,13 +16,12 @@ import styles from '../../styles/Home.module.css'
 import Layout from '../../components/Layout/Layout'
 import withAuth from '../../utils/withAuth'
 
-
 const requestOptions = {
   method: 'GET',
   headers: { 'Content-Type': 'application/json' }
 }
 
-const url = process.env.NEXT_PUBLIC_API_URL;
+const url = process.env.NEXT_PUBLIC_API_URL
 
 const Restaurant = ({ restaurant: data, auth }: any) => {
   return (
@@ -72,11 +71,11 @@ const Restaurant = ({ restaurant: data, auth }: any) => {
 
         {data.tags
           ? data.tags.map((m: any) => (
-            // eslint-disable-next-line no-underscore-dangle
-            <div key={m._id}>
-              <p>{m.description}</p>
-            </div>
-          ))
+              // eslint-disable-next-line no-underscore-dangle
+              <div key={m._id}>
+                <p>{m.description}</p>
+              </div>
+            ))
           : 'No tags'}
 
         <div>
@@ -116,22 +115,22 @@ const Restaurant = ({ restaurant: data, auth }: any) => {
   )
 }
 
+export const getServerSideProps = withAuth(
+  async (auth: Auth | null, context: NextPageContext) => {
+    const { id } = context.query
+    const data = await fetch(
+      `${url}/restaurants/${id}?detailed=true`,
+      requestOptions
+    ).then(res => res.json())
 
-export const getServerSideProps = withAuth(async (auth: Auth | null, context: NextPageContext) => {
-
-  const { id } = context.query
-  const data = await fetch(
-    `${url}/restaurants/${id}?detailed=true`,
-    requestOptions
-  ).then(res => res.json())
-
-  return {
-    props: {
-      restaurant: data,
-      auth
+    return {
+      props: {
+        restaurant: data,
+        auth
+      }
     }
-  }
-}, false);
-
+  },
+  false
+)
 
 export default Restaurant

@@ -3,17 +3,14 @@ import Box from '@mui/material/Box'
 import Navbar from '../Navbar/Navbar'
 
 interface LayoutProps {
-  auth: Auth | null,
+  auth: Auth | null
   children: React.ReactNode
 }
 
 const Layout = ({ auth, children }: LayoutProps) => {
-
   return (
     <Box component="main" sx={{ height: 'calc(100vh - 64px)' }}>
-      <Navbar
-        auth={auth}
-      />
+      <Navbar auth={auth} />
       <Box
         component="section"
         sx={{

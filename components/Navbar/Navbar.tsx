@@ -21,12 +21,10 @@ import ROUTES from './routes'
 
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-
-
 /* -------------------------------------------------------------NAVBAR COMPONENT--------------------------------------------*/
 
 interface NavbarProps {
-  auth: Auth | null,
+  auth: Auth | null
 }
 
 const Navbar = ({ auth }: NavbarProps) => {
@@ -57,7 +55,9 @@ const Navbar = ({ auth }: NavbarProps) => {
           left: 0
         }}
       >
-        <h1 style={{cursor:"pointer"}} onClick={()=>router.push("/")}>LOGO</h1>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => router.push('/')}>
+          LOGO
+        </h1>
 
         {isResponsive && (
           <Hamburger
@@ -130,7 +130,7 @@ const Navbar = ({ auth }: NavbarProps) => {
 /* ------------------------------------------------DROPDOWN COMPONENT FOR NAVBAR---------------------------------------------*/
 
 interface DropdownProps {
-  auth: Auth | null,
+  auth: Auth | null
   anchorEl: null | HTMLElement
   setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | null>>
   router: NextRouter
@@ -138,7 +138,7 @@ interface DropdownProps {
 
 const Dropdown = ({ auth, anchorEl, setAnchorEl, router }: DropdownProps) => {
   const getDropdownItems = () => {
-    return [...ROUTES.top, ...ROUTES.bottom].map((route) => {
+    return [...ROUTES.top, ...ROUTES.bottom].map(route => {
       if (route.authRequired) {
         return (
           auth && (
@@ -218,7 +218,7 @@ const DropdownItem = ({
 
 interface ResponsiveDropdownProps {
   menuIsOpen: boolean
-  auth: Auth | null,
+  auth: Auth | null
   router: NextRouter
 }
 
@@ -228,7 +228,7 @@ const ResponsiveDropdown = ({
   router
 }: ResponsiveDropdownProps) => {
   const getResponsiveDropdownItems = (type: 'top' | 'bottom') => {
-    return ROUTES[type].map((route) => {
+    return ROUTES[type].map(route => {
       if (route.authRequired) {
         return (
           auth && (
