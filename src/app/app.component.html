@@ -1,13 +1,16 @@
+<!-- First line header-->
 <nav class="navbar navbar-expand navbar-dark bg-header sticky-top pb-0 pt-3 container-fluid">
+  <!-- Brand name-->
   <a class="navbar-brand" href="home">Cleanning Supplies</a>
 
-  <form class="form-inline ml-nav-25 d-block w-50">
+  <!-- Search box-->
+  <form [formGroup]="findArticleForm" (ngSubmit)="findArticleByPartialDescription()" class="form-inline ml-nav-25 d-block w-50">
     <div class="input-group">
       <label class="sr-only" for="inlineFormInputSearch">Search</label>
-      <input type="text" class="form-control rounded-left form-header-border" aria-describedby="btnSubmitAddon" id="inlineInputGroupSearch" placeholder="Search articles">
+      <input formControlName="searchText" type="text" class="form-control rounded-left form-header-border" aria-describedby="btnSubmitAddon" id="inlineInputGroupSearch" placeholder="Search articles">
 
       <div class="input-group-append">
-        <button id="btnSubmitAddon" type="button" class="bg-addon btn btn-outline-secondary">
+        <button id="btnSubmitAddon" type="submit" class="bg-addon btn btn-outline-secondary">
           <i class="fa fas fa-search"></i>
           <!-- <span class="ml-1">Search</span> -->
         </button>
@@ -15,21 +18,29 @@
     </div>
   </form>
 </nav>
+
+<!-- Second line header-->
 <nav class="navbar navbar-expand navbar-dark bg-header font-weight-bold sticky-top  pl-6 pb-3 pt-3 pr-6 container-fluid">
   <ul class="nav nav pills my-auto ml-25">
     <li><a class="nav-link text-light" routerLink="home">Home</a></li>
     <li><a class="nav-link text-light" routerLink="categories">Categories</a></li>
-    <li><a class="nav-link text-light" routerLink="noimplemented">History</a></li>
+    <li><a class="nav-link text-light" routerLink="article/create">New Article</a></li>
     <li><a class="nav-link text-light" routerLink="noimplemented">Offers</a></li>
   </ul>
 </nav>
+
+<!-- Bread crumb-->
 <app-ng-dynamic-breadcrumb
   [bgColor]="'#444'"
   [fontColor]="'#fff'"
   [lastLinkColor]="'#fff'">
 </app-ng-dynamic-breadcrumb>
 
+
+<!-- Main content ----------------------------------------------- -->
 <router-outlet></router-outlet>
+<!-- Main content ----------------------------------------------- -->
+
 
 <!-- Footer -->
 <footer class="bg-dark text-center text-white">
