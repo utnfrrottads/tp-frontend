@@ -41,10 +41,10 @@ const ROUTES = {
       '/orders',
       true
     ),
-    new RouteItem('Ayuda en Línea', <BiSupport size={18} />, '/help', false)
+    new RouteItem('Ayuda en Línea', <BiSupport size={18} />, '/', false)
   ],
   bottom: [
-    new RouteItem('Configuración', <IoSettings size={18} />, '/config', true),
+    new RouteItem('Configuración', <IoSettings size={18} />, '/', true),
     new RouteItem(
       'Ingresar/Registrarse',
       <CgLogIn size={18} />,
@@ -52,7 +52,7 @@ const ROUTES = {
       false,
       true
     ),
-    new RouteItem('Cerrar Sesión', <CgLogOff size={18} />, '/logoff', true)
+    new RouteItem('Cerrar Sesión', <CgLogOff size={18} />, '/logout', true)
   ]
 }
 
