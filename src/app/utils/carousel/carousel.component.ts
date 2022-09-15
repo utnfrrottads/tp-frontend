@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICarouselable } from 'src/app/entities/carouselable';
 
 @Component({
@@ -6,13 +6,8 @@ import { ICarouselable } from 'src/app/entities/carouselable';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
 
   @Input() data: ICarouselable[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

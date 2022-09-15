@@ -8,7 +8,7 @@
       class="carousel-item bg-dark h-carousel" [class.active]="i === 0">
       <img [src]="item.urlImage" class="d-block mx-auto image">
       <div class="carousel-caption d-none d-md-block">
-        <a class="text-light" [routerLink]="['/categories','edit', item.name]">
+        <a class="text-light">
           <h5>{{item.name}}</h5>
           <p>{{item.description}}</p>
         </a>

@@ -1,12 +1,14 @@
 <div class="container-fluid">
   <div class="row">
     <main class="col-md-10 offset-md-1 bg-light">
-      <app-categories-list
-        [categories]="categories">
-      </app-categories-list>
-      <app-articles-list
-        [articles]="articles">
-      </app-articles-list>
+      <!-- List of categories-->
+      <!-- <app-categories-list [categories]="categories"></app-categories-list> -->
+
+      <!-- Carousel for best seller articles-->
+      <app-carousel [data]="articles"></app-carousel>
+
+      <!-- List of articles-->
+      <app-articles-list [articles]="articles"></app-articles-list>
     </main>
   </div>
 </div>

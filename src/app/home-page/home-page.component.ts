@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IArticle } from '../entities/article';
-import { ICategory } from '../entities/category';
+import { ArticleService } from '../services/article.service';
 import { HttpService } from '../services/http.service';
 
 @Component({
@@ -11,10 +11,11 @@ import { HttpService } from '../services/http.service';
 export class HomePageComponent implements OnInit {
 
   articles: IArticle[] = [];
-  categories: ICategory[] = [];
+  // categories: ICategory[] = [];
 
   constructor(
     private http: HttpService,
+    private articleService: ArticleService,
   ) { }
 
   ngOnInit(): void {
@@ -24,12 +25,17 @@ export class HomePageComponent implements OnInit {
       },
       error: () => {},
     });
+
+    this.articleService.setArticles(this.articles);
+
+    /*
     this.http.getCategories().subscribe({
       next: (res) => {
         this.categories = res;
       },
       error: () => {},
     });
+    */
   }
 
 }
