@@ -39,4 +39,7 @@ export class ArticleDetailComponent implements OnInit {
     });
   }
 
+  edit(): void {
+    this.router.navigate(['article', 'edit', this.article._id]);
+  }
 }

@@ -1,9 +1,36 @@
 <div class="container bg-light">
+
   <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <p>{{article.code}}</p>
-      <p>{{article.description}}</p>
-      <img [src]="article.urlImage">
+    <div class="col-md-12 bg-dark">
+        <img [src]="article.urlImage" class="mx-auto d-block">
     </div>
   </div>
+
+  <div class="card-body row">
+    <div class="col-md-6">
+      <h5 class="card-title">Detalle del artículo</h5>
+      <p class="card-text">{{article.code}}: {{article.description}}</p>
+      <p class="card-text">{{article.category.name}}: {{article.category.description}}</p>
+      <p class="card-text">Precio: $ {{article.price.value}}</p>
+      <p class="card-text">Cantidad a pedir: {{article.amountToOrder}}</p>
+      <p class="card-text">Punto de pedido: {{article.orderPoint}}</p>
+      <p class="card-text">Stock: {{article.stock}}</p>
+      <p class="card-text"><small class="text-success">Free shipping</small></p>
+      <button (click)="edit()" class="btn-default btn-info">Editar articulo</button>
+    </div>
+    <div class="col-md-6">
+      <h5 class="card-title">Proveedores del artículo</h5>
+      <ul class="list-group">
+        <li *ngFor="let provider of article.providers" class="list-group-item">
+          <p class="card-text">CUIT: {{provider.cuit}}</p>
+          <p class="card-text">Direccion: {{provider.adress}}</p>
+          <p class="card-text">Razon Social: {{provider.businessName}}</p>
+          <p class="card-text">Numero de Telefono: {{provider.phoneNumber}}</p>
+          <br>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
 </div>
