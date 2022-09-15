@@ -30,8 +30,8 @@
             'col-xl-10': !gridView
           }">
           <div class="card-body row">
-              <div class="col-md-10">
-              <h5 class="card-title">{{article.description}}</h5>
+            <div class="col-md-10">
+              <h5 class="card-title" [routerLink]="'/articles/' + article._id">{{article.description}}</h5>
               <p class="card-text">{{article.category.description}}</p>
               <p class="card-text"><small class="text-success">Free shipping</small></p>
             </div>
@@ -44,5 +44,3 @@
     </div>
   </div>
 </div>
-
-<app-carousel [data]="articles"></app-carousel>
