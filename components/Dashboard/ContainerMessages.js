@@ -1,7 +1,13 @@
 import Message from "./Message";
 import { idUserLogged } from "../../utils/api";
+import {useUser} from '../../context/userContext'
 
 export default function ContainerMessages({ messages, archivedMessages }) {
+
+  // context
+
+  const {user} = useUser()
+
   return (
     <div
       className="h-5/6 w-full px-6 py-2 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400  scrollbar-track-gray-200"
@@ -15,7 +21,7 @@ export default function ContainerMessages({ messages, archivedMessages }) {
         {messages.map((m, i) => {
           if (m !== undefined) {
             return (
-              <Message data={m} idUserLogged={m.sender === idUserLogged} />
+              <Message data={m} idUserLogged={m.sender === user._id} />
             );
           }
         })}

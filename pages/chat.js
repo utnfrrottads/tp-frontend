@@ -13,6 +13,7 @@ import {
   getArchivedMessages,
   getMessageHistory,
 } from "../utils/api";
+import {useUser} from '../context/userContext'
 
 // Traigo todos los mensajes del usuario que esta "logeado" con OTRO ENDPOINT para facilitar la request
 //con los mensajes del usuario al que clickeo el chat y viceversa
@@ -37,6 +38,9 @@ export default function Chat(params) {
   const [darkMode, setDarkMode] = useState(true);
 
   const exitChat = () => setIsOpen(false);
+
+  const {user} =  useUser()
+
 
   const handleChatIsOpen = (idFriend) => {
     setIsOpen(true);
@@ -76,9 +80,9 @@ export default function Chat(params) {
 
   // Efecto que se activa cuando el menu cambia de un estado a otro
   useEffect(() => {
-    getUsersNotInFriendList().then((value) => setUsersNotInFriendList(value));
-    getFriendList().then((value) => setFriendsInList(value));
-    getArchivedMessages().then((value) => setArchivedMessages(value));
+    getUsersNotInFriendList(user._id).then((value) => setUsersNotInFriendList(value));
+    getFriendList(user._id).then((value) => setFriendsInList(value));
+    getArchivedMessages(user._id).then((value) => setArchivedMessages(value));
   }, [statusMenu]);
 
   // Efecto que se activa una vez para traer todos los mensajes del usuario logeado
@@ -89,9 +93,9 @@ export default function Chat(params) {
       });
     }
     window.addEventListener("resize", handleResize);
-    getMessageHistory().then((value) => setMessagesHistory(value));
+    getMessageHistory(user._id).then((value) => setMessagesHistory(value));
     const intervalID = setInterval(() => {
-      getMessageHistory().then((value) => setMessagesHistory(value));
+      getMessageHistory(user._id).then((value) => setMessagesHistory(value));
     }, 1000);
 
     return () => {

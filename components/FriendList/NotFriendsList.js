@@ -2,10 +2,16 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import NotFriendCard from "./NotFriendCard";
 import { postAddFriend } from "../../utils/api";
+import {useUser} from '../../context/userContext'
+
 
 export default function NotFriendsList({ data }) {
+
+  const {user} =  useUser()
+
+
   const handleAddFriendClick = async (id) => {
-    await postAddFriend(id).then((msg) => alert(msg));
+    await postAddFriend(id, user._id).then((msg) => alert(msg));
   };
 
   return (

@@ -7,8 +7,9 @@ export default function FriendList({
   searchFriend,
   usersNotInFriendList,
 }) {
+  
   const allUsers = [...friendList, ...usersNotInFriendList];
-
+  
   const filteredData = friendList.filter((fr) => {
     if (searchFriend === "") {
       return fr;
