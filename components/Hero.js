@@ -6,8 +6,8 @@ import Icons from "./Icons"
 export default function Hero () {
 
     return(
-        <section>
-        <div className="flex lg:flex-row md:justify-between flex-col mx-auto text-black">
+        <section className="text-neutral-300">
+        <div className="flex lg:flex-row md:justify-between flex-col mx-auto ">
             <div className="mx-auto my-auto flex flex-col justify-center items-center relative">
             
                 
@@ -20,7 +20,7 @@ export default function Hero () {
             
                 
                 
-                <div className="mt-10 lg:mt-20 bg-gray-400 rounded-full relative p-4 cursor-pointer border-2 border-black hover:bg-white w-full text-center duration-300">
+                <div className="mt-10 lg:mt-20 bg-neutral-900 rounded-full relative p-4 cursor-pointer border-1 hover:bg-neutral-400 w-full text-center duration-300">
                 <Link href='/'>
                 <a className="font-semibold">TRY FREE</a>
                 </Link>

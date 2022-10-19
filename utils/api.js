@@ -1,6 +1,6 @@
 
 export const idUserLogged = "62eaa14c3901f21e944abfcd";
-const urlUser = `http://localhost:9000/api/v1/friendList/`;
+const urlUserCreate = `http://localhost:9000/api/v1/users/create`;
 const urlMessages = `http://localhost:9000/api/v1/messages/filter/`;
 const urlFriendListFilter = `http://localhost:9000/api/v1/friendList/filter/`;
 const urlFriendList = `http://localhost:9000/api/v1/friendList/`;
@@ -84,4 +84,29 @@ export function filterMessages(messages) {
     };
   });
   return msgs;
+}
+
+
+export async function postUser(userData){
+
+  const data = {
+
+  }
+
+  const JSONdata = JSON.stringify(userData)
+  console.log(userData)
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSONdata,
+  };
+
+  const response = await fetch(urlUserCreate, options)
+
+
+  return response
+
 }
