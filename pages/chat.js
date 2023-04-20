@@ -7,6 +7,7 @@ import Header from "../components/FriendList/Header";
 import Dashboard from "../components/Dashboard/Dashboard";
 import NotFriendsList from "../components/FriendList/NotFriendsList";
 import ArchivedList from "../components/FriendList/ArchivedList";
+import Notchatopen from "../components/Notchatopen";
 import {
   getUsersNotInFriendList,
   getFriendList,
@@ -107,7 +108,7 @@ export default function Chat(params) {
   return (
     <div className="h-screen w-screen flex flex-row overflow-hidden">
       <div
-        className={`h-full xl:w-1/3 sm:w-1/2 sm:block  ${
+        className={`h-full xl:w-1/3 sm:w-1/2 sm:block ${
           !isOpen && dimensions.width <= 425 ? "w-full" : "hidden"
         } bg-neutral-800 `}
       >
@@ -138,7 +139,7 @@ export default function Chat(params) {
         )}
       </div>
       <div
-        className={`h-full sm:1/2 xl:w-2/3 sm:block ${
+        className={`h-full sm:w-1/2 xl:w-2/3 sm:block ${
           isOpen && dimensions.width <= 425 ? "block w-full" : "hidden"
         }`}
       >
@@ -151,7 +152,7 @@ export default function Chat(params) {
           />
         ) : (
           // Hacer componente
-          <p>Pagina sin chats</p>
+          <Notchatopen/>
         )}
       </div>
     </div>
