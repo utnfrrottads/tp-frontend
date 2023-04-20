@@ -6,7 +6,7 @@ import back from '../public/back.png'
 export default function Notchatopen(){
 
     return(
-        <div className="h-full w-full relative bg-slate-500 ">
+        <div className="h-full w-full absolute bg-slate-500 ">
             <Image
             src={back}
             alt="Abre un chat"

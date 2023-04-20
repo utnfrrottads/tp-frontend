@@ -29,7 +29,7 @@ export default function Dashboard({
   const messagesToShow = filterMessages(messages);
 
   return (
-    <div className="h-full w-full relative flex flex-col justify-between">
+    <div className="h-full w-full relative flex flex-col justify-between bg-inherit">
       <HeaderProfile friend={friend} />
       <ContainerMessages
         messages={messagesToShow}

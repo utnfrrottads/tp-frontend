@@ -141,8 +141,10 @@ export default function Chat(params) {
       <div
         className={`h-full sm:w-1/2 xl:w-2/3 sm:block ${
           isOpen && dimensions.width <= 425 ? "block w-full" : "hidden"
-        }`}
+        } relative`}
+        
       >
+      <Notchatopen/>
         {isOpen ? (
           <Dashboard
             messages={dataChatUser}
@@ -152,9 +154,11 @@ export default function Chat(params) {
           />
         ) : (
           // Hacer componente
-          <Notchatopen/>
+          <></>
         )}
+          
       </div>
+      
     </div>
   );
 }
