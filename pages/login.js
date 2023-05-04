@@ -4,8 +4,9 @@ import {useUser} from '../context/userContext'
 import { useRouter } from 'next/router'
 import FormLogin from "../components/Login/FormLogin"
 import Link from "next/link";
+const JWT = require("jsonwebtoken");
 
-const endpoint = "http://localhost:9000/api/v1/users/"
+const endpoint = "http://localhost:9000/auth/signin" // Cambiar o agregar en utils
 
 export default function Login(props){
 
@@ -27,21 +28,33 @@ export default function Login(props){
 
     const handleSubmit = async ()=>{
 
-      const response = await fetch(endpoint);
+
+
+      const JSONdata = JSON.stringify({username: usernameForm, password:passwordForm})
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSONdata
+      };
+
+      const response = await fetch(endpoint,options);
       const data =  await response.json();
-      const users = data.users;
-
+      const decodeJWT = JWT.decode(data.jwt);
+      const user = decodeJWT.user
       
-      const loggedUser = await users.find((user) =>{
-        return (user.name === usernameForm && user.password === passwordForm)
-      });
+      // const loggedUser = await users.find((user) =>{
+      //   return (user.name === usernameForm && user.password === passwordForm)
+      // });
 
-      if(!loggedUser) {setError(true);
+      if(!user) {setError(true);
        return}; // Hardcode, por si se erra en el login
       // // Creo la cookie, en caso de que no haya usuario, devuelvo un forbiden y algun
 
 
-      setUser(loggedUser)
+      setUser(user)
       router.push('/chat')
 
   }
