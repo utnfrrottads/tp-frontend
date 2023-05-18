@@ -1,12 +1,11 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {useUser} from '../context/userContext'
 import { useRouter } from 'next/router'
 import FormLogin from "../components/Login/FormLogin"
 import Link from "next/link";
 const JWT = require("jsonwebtoken");
-
-const endpoint = "http://localhost:9000/auth/signin" // Cambiar o agregar en utils
+import { urlUsers, urlSingIn } from "../utils/constants";
 
 export default function Login(props){
 
@@ -27,9 +26,6 @@ export default function Login(props){
 
 
     const handleSubmit = async ()=>{
-
-
-
       const JSONdata = JSON.stringify({username: usernameForm, password:passwordForm})
 
       const options = {
@@ -40,7 +36,7 @@ export default function Login(props){
         body: JSONdata
       };
 
-      const response = await fetch(endpoint,options);
+      const response = await fetch(urlSingIn,options);
       const data =  await response.json();
       const decodeJWT = JWT.decode(data.jwt);
       const user = decodeJWT.user

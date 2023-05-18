@@ -22,7 +22,7 @@ export default function Dashboard({
   };
 
   const handleSubmit = (event) => {
-    postMessage(messageToSend, friend._id, user._id).then((value) => alert(value.text));
+    postMessage(messageToSend, friend._id, user._id).then(setMessageToSend(""));
     event.preventDefault();
   };
 

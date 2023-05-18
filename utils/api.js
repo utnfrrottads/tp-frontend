@@ -1,15 +1,16 @@
 
 export const idUserLogged = "62eaa14c3901f21e944abfcd";
-const urlUserCreate = `http://localhost:9000/api/v1/users/create`;
-const urlMessages = `http://localhost:9000/api/v1/messages/filter/`;
-const urlFriendListFilter = `http://localhost:9000/api/v1/friendList/filter/`;
-const urlFriendList = `http://localhost:9000/api/v1/friendList/`;
-const urlArchivedMessages = `http://localhost:9000/api/v1/messages/archived/`;
-const urlMessagesToSend = "http://localhost:9000/api/v1/messages/";
+import {
+  urlUserCreate,
+  urlMessages,
+  urlFriendListFilter,
+  urlFriendList,
+  urlArchivedMessages,
+  urlMessagesToSend,
+} from "./constants.js";
+
 
 export async function getUsersNotInFriendList(idUser) {
-  
-
   const endpoint = urlFriendListFilter + idUser;
   const resUsersNotInFriendList = await fetch(endpoint);
   const usersNotInFriendList = await resUsersNotInFriendList.json();

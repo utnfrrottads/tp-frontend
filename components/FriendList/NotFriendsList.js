@@ -5,13 +5,16 @@ import { postAddFriend } from "../../utils/api";
 import {useUser} from '../../context/userContext'
 
 
-export default function NotFriendsList({ data }) {
+export default function NotFriendsList({ data, setStatusMenu }) {
 
   const {user} =  useUser()
 
 
   const handleAddFriendClick = async (id) => {
-    await postAddFriend(id, user._id).then((msg) => alert(msg));
+    await postAddFriend(id, user._id).then((msg) => {
+      alert(msg);
+      setStatusMenu("Chats");
+    });
   };
 
   return (
