@@ -41,7 +41,7 @@ export default function Dashboard({
         message={messageToSend}
       />
       <a
-        className="h-8 w-8 rounded-full hover:bg-neutral-700 text-white cursor-pointer absolute top-5 right-6"
+        className="h-8 w-8 rounded-full hover:bg-neutral-700 text-white cursor-pointer absolute top-3 right-6"
         onClick={() => exitChat()}
       >
         <svg

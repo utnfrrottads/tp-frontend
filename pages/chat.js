@@ -112,6 +112,7 @@ export default function Chat(params) {
         {statusMenu === "Chats" && (
           <FriendList
             handleChat={handleChatIsOpen}
+            setStatusMenu={setStatusMenu}
             friendList={friendsInList}
             usersNotInFriendList={usersNotInFriendList}
             dataChatHistory={messagesHistory}
@@ -128,6 +129,7 @@ export default function Chat(params) {
             usersNotInFriendList={usersNotInFriendList}
           />
         )}
+        <Footer />
       </div>
       <div
         className={`h-full sm:w-1/2 xl:w-2/3 sm:block ${

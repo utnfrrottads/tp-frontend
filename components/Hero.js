@@ -63,7 +63,7 @@ export default function Hero() {
             <img
               src="/HomeImage.png"
               alt="billing"
-              className="w-[100%] h-[100%] relative z-[5] "
+              className="w-full h-auto object-cover object-center sm:w-auto sm:h-auto"
             />
           </div>
         </Container>

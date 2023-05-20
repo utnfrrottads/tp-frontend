@@ -22,9 +22,6 @@ export async function getFriendList(idUser) {
   const endpoint = urlFriendList + idUser;
   const resFriendsInList = await fetch(endpoint);
   const friendsInList = await resFriendsInList.json();
-  console.log("endpoint")
-  console.log(endpoint)
-  console.log(friendsInList);
   return friendsInList;
 }
 

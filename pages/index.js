@@ -15,8 +15,8 @@ export default function Home() {
         <Header />
         <div className="shadow-2xl container mx-auto w-full bg-zinc-900 ring-1 ring-zinc-300/20 h-full 2xl:h-screen">
           <Hero />
-          <Footer />
         </div>
+          <Footer />
       </div>
     </div>
   );
